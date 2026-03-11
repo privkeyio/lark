@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.usb4java.*;
 
 import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 
 public class YubiKeyHmacProvider implements ChallengeResponseProvider {
     private static final Logger log = LoggerFactory.getLogger(YubiKeyHmacProvider.class);
 
     private Runnable onWaitingForTouch;
     private Runnable onComplete;
+    private boolean kernelDriverDetached;
 
     private static final int YUBICO_VID = 0x1050;
     private static final int HID_USAGE_PAGE_OTP = 0x0001;
@@ -61,7 +61,9 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
             try {
                 return performChallengeResponse(handle, challenge);
             } finally {
-                LibUsb.attachKernelDriver(handle, 0);
+                if(kernelDriverDetached) {
+                    LibUsb.attachKernelDriver(handle, 0);
+                }
                 LibUsb.close(handle);
             }
         } finally {
@@ -128,6 +130,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                             LibUsb.close(handle);
                             throw new ChallengeResponseException("Failed to detach kernel driver: " + LibUsb.errorName(result));
                         }
+                        kernelDriverDetached = true;
                     }
 
                     return handle;
@@ -152,9 +155,6 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
     private byte[] performChallengeResponse(DeviceHandle handle, byte[] challenge) throws ChallengeResponseException {
         byte[] frame = buildChallengeFrame(challenge);
         writeFrame(handle, frame);
-        if(onWaitingForTouch != null) {
-            onWaitingForTouch.run();
-        }
         try {
             byte[] response = readResponse(handle);
             forceKeyUpdate(handle);
@@ -181,7 +181,6 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
         waitForClear(handle, SLOT_WRITE_FLAG);
 
         int totalChunks = (FRAME_SIZE + DATA_PER_CHUNK - 1) / DATA_PER_CHUNK;
-        byte[] ptr = frame;
         for(int seq = 0; seq < totalChunks; seq++) {
             int offset = seq * DATA_PER_CHUNK;
             byte[] report = new byte[FEATURE_RPT_SIZE];
@@ -213,7 +212,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
         System.arraycopy(firstData, 0, response, bytesRead, DATA_PER_CHUNK);
         bytesRead += DATA_PER_CHUNK;
 
-        while(bytesRead + FEATURE_RPT_SIZE <= response.length) {
+        while(bytesRead + DATA_PER_CHUNK <= response.length) {
             byte[] data = usbRead(handle);
             if((data[FEATURE_RPT_SIZE - 1] & RESP_PENDING_FLAG) != 0) {
                 if((data[FEATURE_RPT_SIZE - 1] & SEQUENCE_MASK) == 0) {
@@ -277,15 +276,19 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     if(!blocking) {
                         blocking = true;
                         maxTimeMs += 256 * 1000L;
+                        if(onWaitingForTouch != null) {
+                            onWaitingForTouch.run();
+                        }
                     }
                 } else {
                     forceKeyUpdate(handle);
                     throw new ChallengeResponseException("YubiKey requires button press but blocking not allowed");
                 }
-            } else {
-                if(blocking) {
-                    break;
+            } else if(blocking) {
+                if((flags & mask) == mask) {
+                    return data;
                 }
+                break;
             }
 
             if((flags & mask) == mask) {
