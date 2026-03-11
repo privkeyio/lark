@@ -18,7 +18,8 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
     private Runnable onWaitingForTouch;
     private Runnable onComplete;
-    private boolean kernelDriverDetached;
+
+    private static final int CRC_OK_RESIDUAL = 0xF0B8;
 
     private static final int YUBICO_VID = 0x1050;
     private static final int HID_USAGE_PAGE_OTP = 0x0001;
@@ -51,7 +52,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
     @Override
     public byte[] getResponse(byte[] challenge) throws ChallengeResponseException {
-        kernelDriverDetached = false;
+        boolean[] kernelDriverDetached = {false};
         Context context = new Context();
         int result = LibUsb.init(context);
         if(result != LibUsb.SUCCESS) {
@@ -59,12 +60,12 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
         }
 
         try {
-            DeviceHandle handle = openYubiKey(context);
+            DeviceHandle handle = openYubiKey(context, kernelDriverDetached);
             try {
                 return performChallengeResponse(handle, challenge);
             } finally {
                 LibUsb.releaseInterface(handle, 0);
-                if(kernelDriverDetached) {
+                if(kernelDriverDetached[0]) {
                     LibUsb.attachKernelDriver(handle, 0);
                 }
                 LibUsb.close(handle);
@@ -105,7 +106,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
         }
     }
 
-    private DeviceHandle openYubiKey(Context context) throws ChallengeResponseException {
+    private DeviceHandle openYubiKey(Context context, boolean[] kernelDriverDetached) throws ChallengeResponseException {
         DeviceList list = new DeviceList();
         int result = LibUsb.getDeviceList(context, list);
         if(result < 0) {
@@ -133,12 +134,12 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                             LibUsb.close(handle);
                             throw new ChallengeResponseException("Failed to detach kernel driver: " + LibUsb.errorName(result));
                         }
-                        kernelDriverDetached = true;
+                        kernelDriverDetached[0] = true;
                     }
 
                     result = LibUsb.claimInterface(handle, 0);
                     if(result != LibUsb.SUCCESS) {
-                        if(kernelDriverDetached) {
+                        if(kernelDriverDetached[0]) {
                             LibUsb.attachKernelDriver(handle, 0);
                         }
                         LibUsb.close(handle);
@@ -222,23 +223,37 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
     private byte[] readResponse(DeviceHandle handle) throws ChallengeResponseException {
         byte[] firstData = waitForSet(handle, RESP_PENDING_FLAG, true);
 
-        byte[] response = new byte[HMAC_SHA1_RESPONSE_LENGTH + 8];
+        int responseLen = HMAC_SHA1_RESPONSE_LENGTH + 2;
+        byte[] response = new byte[responseLen + 8];
         int bytesRead = 0;
 
-        System.arraycopy(firstData, 0, response, bytesRead, DATA_PER_CHUNK);
+        System.arraycopy(firstData, 0, response, 0, DATA_PER_CHUNK);
+        Arrays.fill(firstData, (byte) 0);
         bytesRead += DATA_PER_CHUNK;
 
         while(bytesRead + DATA_PER_CHUNK <= response.length) {
             byte[] data = usbRead(handle);
-            if((data[FEATURE_RPT_SIZE - 1] & RESP_PENDING_FLAG) != 0) {
-                if((data[FEATURE_RPT_SIZE - 1] & SEQUENCE_MASK) == 0) {
+            try {
+                int flags = data[FEATURE_RPT_SIZE - 1] & 0xFF;
+                if((flags & RESP_PENDING_FLAG) == 0 || (flags & SEQUENCE_MASK) == 0) {
                     break;
                 }
                 System.arraycopy(data, 0, response, bytesRead, DATA_PER_CHUNK);
                 bytesRead += DATA_PER_CHUNK;
-            } else {
-                break;
+            } finally {
+                Arrays.fill(data, (byte) 0);
             }
+        }
+
+        if(bytesRead < responseLen) {
+            Arrays.fill(response, (byte) 0);
+            throw new ChallengeResponseException("Incomplete response from YubiKey: expected " + responseLen + " bytes, got " + bytesRead);
+        }
+
+        int crc = crc16(response, responseLen);
+        if(crc != CRC_OK_RESIDUAL) {
+            Arrays.fill(response, (byte) 0);
+            throw new ChallengeResponseException("CRC validation failed on YubiKey response");
         }
 
         byte[] result = new byte[HMAC_SHA1_RESPONSE_LENGTH];
@@ -267,6 +282,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
             byte[] data = usbRead(handle);
             int flags = data[FEATURE_RPT_SIZE - 1] & 0xFF;
+            Arrays.fill(data, (byte) 0);
             if((flags & mask) == 0) {
                 return;
             }
@@ -301,16 +317,13 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     forceKeyUpdate(handle);
                     throw new ChallengeResponseException("YubiKey requires button press but blocking not allowed");
                 }
-            } else if(blocking) {
-                if((flags & mask) == mask) {
-                    return data;
-                }
-                break;
             }
 
             if((flags & mask) == mask) {
                 return data;
             }
+
+            Arrays.fill(data, (byte) 0);
         }
 
         throw new ChallengeResponseException("Timed out waiting for YubiKey response — did you touch the key?");
@@ -318,39 +331,53 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
     private void usbWrite(DeviceHandle handle, byte[] data) throws ChallengeResponseException {
         ByteBuffer buffer = ByteBuffer.allocateDirect(FEATURE_RPT_SIZE);
-        buffer.put(data, 0, FEATURE_RPT_SIZE);
-        buffer.rewind();
+        try {
+            buffer.put(data, 0, FEATURE_RPT_SIZE);
+            buffer.rewind();
 
-        int result = LibUsb.controlTransfer(handle,
-                (byte)(LibUsb.REQUEST_TYPE_CLASS | LibUsb.RECIPIENT_INTERFACE | LibUsb.ENDPOINT_OUT),
-                HID_SET_REPORT,
-                (short)((REPORT_TYPE_FEATURE << 8) | 0x00),
-                (short)0,
-                buffer,
-                USB_TIMEOUT);
+            int result = LibUsb.controlTransfer(handle,
+                    (byte)(LibUsb.REQUEST_TYPE_CLASS | LibUsb.RECIPIENT_INTERFACE | LibUsb.ENDPOINT_OUT),
+                    HID_SET_REPORT,
+                    (short)((REPORT_TYPE_FEATURE << 8) | 0x00),
+                    (short)0,
+                    buffer,
+                    USB_TIMEOUT);
 
-        if(result < 0) {
-            throw new ChallengeResponseException("Failed to write to YubiKey: " + LibUsb.errorName(result));
+            if(result < 0) {
+                throw new ChallengeResponseException("Failed to write to YubiKey: " + LibUsb.errorName(result));
+            }
+        } finally {
+            zeroBuffer(buffer);
         }
     }
 
     private byte[] usbRead(DeviceHandle handle) throws ChallengeResponseException {
         ByteBuffer buffer = ByteBuffer.allocateDirect(FEATURE_RPT_SIZE);
-        int result = LibUsb.controlTransfer(handle,
-                (byte)(LibUsb.REQUEST_TYPE_CLASS | LibUsb.RECIPIENT_INTERFACE | LibUsb.ENDPOINT_IN),
-                HID_GET_REPORT,
-                (short)((REPORT_TYPE_FEATURE << 8) | 0x00),
-                (short)0,
-                buffer,
-                USB_TIMEOUT);
+        try {
+            int result = LibUsb.controlTransfer(handle,
+                    (byte)(LibUsb.REQUEST_TYPE_CLASS | LibUsb.RECIPIENT_INTERFACE | LibUsb.ENDPOINT_IN),
+                    HID_GET_REPORT,
+                    (short)((REPORT_TYPE_FEATURE << 8) | 0x00),
+                    (short)0,
+                    buffer,
+                    USB_TIMEOUT);
 
-        if(result < 0) {
-            throw new ChallengeResponseException("Failed to read from YubiKey: " + LibUsb.errorName(result));
+            if(result < 0) {
+                throw new ChallengeResponseException("Failed to read from YubiKey: " + LibUsb.errorName(result));
+            }
+
+            byte[] data = new byte[FEATURE_RPT_SIZE];
+            buffer.get(data, 0, Math.min(result, FEATURE_RPT_SIZE));
+            return data;
+        } finally {
+            zeroBuffer(buffer);
         }
+    }
 
-        byte[] data = new byte[FEATURE_RPT_SIZE];
-        buffer.get(data, 0, Math.min(result, FEATURE_RPT_SIZE));
-        return data;
+    private static void zeroBuffer(ByteBuffer buffer) {
+        for(int i = 0; i < buffer.capacity(); i++) {
+            buffer.put(i, (byte) 0);
+        }
     }
 
     private static void sleep(long ms) throws ChallengeResponseException {
