@@ -169,11 +169,16 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
         byte[] frame = buildChallengeFrame(challenge);
         try {
             writeFrame(handle, frame);
+            boolean success = false;
             try {
                 byte[] response = readResponse(handle);
+                success = true;
                 forceKeyUpdate(handle);
                 return response;
             } finally {
+                if(!success) {
+                    forceKeyUpdate(handle);
+                }
                 if(onComplete != null) {
                     onComplete.run();
                 }
