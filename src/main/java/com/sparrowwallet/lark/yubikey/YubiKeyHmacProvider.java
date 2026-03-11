@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.usb4java.*;
 
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class YubiKeyHmacProvider implements ChallengeResponseProvider {
     private static final Logger log = LoggerFactory.getLogger(YubiKeyHmacProvider.class);
@@ -50,6 +51,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
     @Override
     public byte[] getResponse(byte[] challenge) throws ChallengeResponseException {
+        kernelDriverDetached = false;
         Context context = new Context();
         int result = LibUsb.init(context);
         if(result != LibUsb.SUCCESS) {
@@ -61,6 +63,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
             try {
                 return performChallengeResponse(handle, challenge);
             } finally {
+                LibUsb.releaseInterface(handle, 0);
                 if(kernelDriverDetached) {
                     LibUsb.attachKernelDriver(handle, 0);
                 }
@@ -133,6 +136,15 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                         kernelDriverDetached = true;
                     }
 
+                    result = LibUsb.claimInterface(handle, 0);
+                    if(result != LibUsb.SUCCESS) {
+                        if(kernelDriverDetached) {
+                            LibUsb.attachKernelDriver(handle, 0);
+                        }
+                        LibUsb.close(handle);
+                        throw new ChallengeResponseException("Failed to claim YubiKey interface: " + LibUsb.errorName(result));
+                    }
+
                     return handle;
                 }
             }
@@ -154,15 +166,19 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
     private byte[] performChallengeResponse(DeviceHandle handle, byte[] challenge) throws ChallengeResponseException {
         byte[] frame = buildChallengeFrame(challenge);
-        writeFrame(handle, frame);
         try {
-            byte[] response = readResponse(handle);
-            forceKeyUpdate(handle);
-            return response;
-        } finally {
-            if(onComplete != null) {
-                onComplete.run();
+            writeFrame(handle, frame);
+            try {
+                byte[] response = readResponse(handle);
+                forceKeyUpdate(handle);
+                return response;
+            } finally {
+                if(onComplete != null) {
+                    onComplete.run();
+                }
             }
+        } finally {
+            Arrays.fill(frame, (byte) 0);
         }
     }
 
@@ -227,6 +243,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
         byte[] result = new byte[HMAC_SHA1_RESPONSE_LENGTH];
         System.arraycopy(response, 0, result, 0, HMAC_SHA1_RESPONSE_LENGTH);
+        Arrays.fill(response, (byte) 0);
         return result;
     }
 
