@@ -322,14 +322,16 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     forceKeyUpdate(handle);
                     throw new ChallengeResponseException("Security key requires button press but blocking not allowed");
                 }
-            } else if(blocking) {
-                Arrays.fill(data, (byte) 0);
-                forceKeyUpdate(handle);
-                throw new ChallengeResponseException("Security key timed out waiting for touch. Please try again.");
             }
 
             if((flags & mask) == mask) {
                 return data;
+            }
+
+            if(blocking && (flags & RESP_TIMEOUT_WAIT_FLAG) == 0) {
+                Arrays.fill(data, (byte) 0);
+                forceKeyUpdate(handle);
+                throw new ChallengeResponseException("Security key timed out waiting for touch. Please try again.");
             }
 
             Arrays.fill(data, (byte) 0);
