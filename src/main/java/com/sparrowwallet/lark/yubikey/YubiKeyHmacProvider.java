@@ -124,7 +124,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     DeviceHandle handle = new DeviceHandle();
                     result = LibUsb.open(device, handle);
                     if(result != LibUsb.SUCCESS) {
-                        throw new ChallengeResponseException("Failed to open YubiKey: " + LibUsb.errorName(result));
+                        throw new ChallengeResponseException("Failed to open security key: " + LibUsb.errorName(result));
                     }
 
                     int active = LibUsb.kernelDriverActive(handle, 0);
@@ -143,7 +143,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                             LibUsb.attachKernelDriver(handle, 0);
                         }
                         LibUsb.close(handle);
-                        throw new ChallengeResponseException("Failed to claim YubiKey interface: " + LibUsb.errorName(result));
+                        throw new ChallengeResponseException("Failed to claim security key interface: " + LibUsb.errorName(result));
                     }
 
                     return handle;
@@ -153,7 +153,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
             LibUsb.freeDeviceList(list, true);
         }
 
-        throw new ChallengeResponseException("No YubiKey found. Please plug in your YubiKey and try again.");
+        throw new ChallengeResponseException("No compatible security key found. Please plug in your security key and try again.");
     }
 
     private static boolean isYubiKeyPid(int pid) {
@@ -252,13 +252,13 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
 
         if(bytesRead < responseLen) {
             Arrays.fill(response, (byte) 0);
-            throw new ChallengeResponseException("Incomplete response from YubiKey: expected " + responseLen + " bytes, got " + bytesRead);
+            throw new ChallengeResponseException("Incomplete response from security key: expected " + responseLen + " bytes, got " + bytesRead);
         }
 
         int crc = crc16(response, responseLen);
         if(crc != CRC_OK_RESIDUAL) {
             Arrays.fill(response, (byte) 0);
-            throw new ChallengeResponseException("CRC validation failed on YubiKey response");
+            throw new ChallengeResponseException("CRC validation failed on security key response");
         }
 
         byte[] result = new byte[HMAC_SHA1_RESPONSE_LENGTH];
@@ -292,7 +292,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                 return;
             }
         }
-        throw new ChallengeResponseException("YubiKey not ready");
+        throw new ChallengeResponseException("Security key not ready");
     }
 
     private byte[] waitForSet(DeviceHandle handle, int mask, boolean mayBlock) throws ChallengeResponseException {
@@ -320,8 +320,12 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     }
                 } else {
                     forceKeyUpdate(handle);
-                    throw new ChallengeResponseException("YubiKey requires button press but blocking not allowed");
+                    throw new ChallengeResponseException("Security key requires button press but blocking not allowed");
                 }
+            } else if(blocking) {
+                Arrays.fill(data, (byte) 0);
+                forceKeyUpdate(handle);
+                throw new ChallengeResponseException("Security key timed out waiting for touch. Please try again.");
             }
 
             if((flags & mask) == mask) {
@@ -331,7 +335,8 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
             Arrays.fill(data, (byte) 0);
         }
 
-        throw new ChallengeResponseException("Timed out waiting for YubiKey response — did you touch the key?");
+        forceKeyUpdate(handle);
+        throw new ChallengeResponseException("Timed out waiting for security key response. Please try again.");
     }
 
     private void usbWrite(DeviceHandle handle, byte[] data) throws ChallengeResponseException {
@@ -349,7 +354,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     USB_TIMEOUT);
 
             if(result < 0) {
-                throw new ChallengeResponseException("Failed to write to YubiKey: " + LibUsb.errorName(result));
+                throw new ChallengeResponseException("Failed to write to security key: " + LibUsb.errorName(result));
             }
         } finally {
             zeroBuffer(buffer);
@@ -368,7 +373,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
                     USB_TIMEOUT);
 
             if(result < 0) {
-                throw new ChallengeResponseException("Failed to read from YubiKey: " + LibUsb.errorName(result));
+                throw new ChallengeResponseException("Failed to read from security key: " + LibUsb.errorName(result));
             }
 
             byte[] data = new byte[FEATURE_RPT_SIZE];
@@ -390,7 +395,7 @@ public class YubiKeyHmacProvider implements ChallengeResponseProvider {
             Thread.sleep(ms);
         } catch(InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new ChallengeResponseException("Interrupted while waiting for YubiKey");
+            throw new ChallengeResponseException("Interrupted while waiting for security key");
         }
     }
 
