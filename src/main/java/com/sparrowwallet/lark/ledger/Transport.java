@@ -6,7 +6,7 @@ import java.io.Closeable;
 
 public interface Transport extends Closeable {
     void open();
-    int send(byte[] data);
+    int send(byte[] data) throws DeviceException;
     Transport.Response recv() throws DeviceException;
     Transport.Response exchange(byte[] data) throws DeviceException;
     Transport.Response apduExchange(APDUCommand apduCommand) throws DeviceException;

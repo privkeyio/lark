@@ -17,6 +17,7 @@ public class HIDTransport extends AbstractTransport {
     private final HidDevice hidDevice;
 
     private static final byte[] HEADER_BYTES = new byte[]{0x01, 0x01, 0x05};
+    private static final int CONTINUATION_TIMEOUT_MS = 10000;
 
     public HIDTransport(HidDevice hidDevice) {
         this.hidDevice = hidDevice;
@@ -38,7 +39,7 @@ public class HIDTransport extends AbstractTransport {
      * @return the number of bytes of data sent
      */
     @Override
-    public int send(byte[] data) {
+    public int send(byte[] data) throws DeviceException {
         if(data == null) {
             throw new IllegalArgumentException("data cannot be null");
         }
@@ -64,7 +65,11 @@ public class HIDTransport extends AbstractTransport {
             buf.putShort((short)seqIdx);
             buf.put(chunk);
 
-            hidDevice.write(buf.array(), 64, (byte)0);
+            int written = hidDevice.write(buf.array(), 64, (byte)0);
+            if(written < 0) {
+                throw new DeviceException("Error writing to device: " + getLastErrorMessage());
+            }
+
             length += chunk.length + 1;
             offset += 64 - headerLength;
             seqIdx++;
@@ -78,24 +83,26 @@ public class HIDTransport extends AbstractTransport {
         int seqIdx = 0;
         hidDevice.setNonBlocking(false);
         byte[] chunk = new byte[64];
-        hidDevice.read(chunk);
+        int read = hidDevice.read(chunk);
         hidDevice.setNonBlocking(true);
-
-        if(chunk[0] != 0x01 || chunk[1] != 0x01 || chunk[2] != 0x05) {
-            throw new DeviceException("Unexpected header in response");
-        }
-        ByteBuffer buf = ByteBuffer.allocate(2);
-        buf.putShort((short)seqIdx);
-        if(!Arrays.equals(buf.array(), Arrays.copyOfRange(chunk, 3, 5))) {
-            throw new DeviceException("Unexpected sequence index in response");
+        if(read <= 0) {
+            throw new DeviceException("Error reading from device: " + getLastErrorMessage());
         }
 
+        checkHeader(chunk, seqIdx);
         int dataLength = new BigInteger(1, Arrays.copyOfRange(chunk, 5, 7)).intValue();
         byte[] data = Arrays.copyOfRange(chunk, 7, chunk.length);
 
         while(data.length < dataLength) {
             byte[] nextChunk = new byte[64];
-            hidDevice.read(nextChunk, 1000);
+            int nextRead = hidDevice.read(nextChunk, CONTINUATION_TIMEOUT_MS);
+            if(nextRead < 0) {
+                throw new DeviceException("Error reading from device: " + getLastErrorMessage());
+            } else if(nextRead == 0) {
+                throw new DeviceException("Timed out waiting for response from device");
+            }
+
+            checkHeader(nextChunk, ++seqIdx);
             data = Utils.concat(data, Arrays.copyOfRange(nextChunk, 5, nextChunk.length));
         }
 
@@ -107,6 +114,22 @@ public class HIDTransport extends AbstractTransport {
         }
 
         return new Response(sw, rdata);
+    }
+
+    private String getLastErrorMessage() {
+        String message = hidDevice.getLastErrorMessage();
+        return message == null || message.isEmpty() ? "Unknown error" : message;
+    }
+
+    private void checkHeader(byte[] chunk, int seqIdx) throws DeviceException {
+        if(chunk[0] != 0x01 || chunk[1] != 0x01 || chunk[2] != 0x05) {
+            throw new DeviceException("Unexpected header in response");
+        }
+        ByteBuffer buf = ByteBuffer.allocate(2);
+        buf.putShort((short)seqIdx);
+        if(!Arrays.equals(buf.array(), Arrays.copyOfRange(chunk, 3, 5))) {
+            throw new DeviceException("Unexpected sequence index in response");
+        }
     }
 
     @Override
