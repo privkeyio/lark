@@ -291,10 +291,9 @@ public class BitBox02Client extends HardwareClient {
             }
 
             List<Signature> sigs = btcSign(bitBox02Device, scriptConfigs, inputs, outputs, (int)psbt.getTransaction().getLocktime(), (int)psbt.getTransaction().getVersion());
-            for(int i = 0; i < sigs.size(); i++) {
-                Signature signature = sigs.get(i);
-                PSBTInput psbtInput = psbt.getPsbtInputs().get(i);
-                ECKey pubKey = foundPubKeys.get(i);
+            for(Signature signature : sigs) {
+                PSBTInput psbtInput = psbt.getPsbtInputs().get(signature.index());
+                ECKey pubKey = foundPubKeys.get(signature.index());
 
                 BigInteger r = new BigInteger(1, Arrays.copyOfRange(signature.signature, 0, 32));
                 BigInteger s = new BigInteger(1, Arrays.copyOfRange(signature.signature, 32, 64));
