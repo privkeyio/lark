@@ -30,6 +30,7 @@ import java.net.InetAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 /**
@@ -197,6 +198,18 @@ public class TrezorEmulatorHarness {
         client.initializeMasterFingerprint();
 
         String mode = args[0];
+
+        if("signpsbt".equals(mode)) {
+            //Signs a PSBT built elsewhere, which is how the wallet's own decision about the hash type is
+            //carried into the device path without this harness making that decision itself. Handled before
+            //any script type is read, because the PSBT already says what the inputs are.
+            PSBT given = new PSBT(Base64.getDecoder().decode(args[1]));
+            System.out.println("DECLARED=" + given.getPsbtInputs().getFirst().getSigHash());
+            client.signTransaction(given);
+            System.out.println("SIGNED_PSBT=" + Base64.getEncoder().encodeToString(given.serialize()));
+            return;
+        }
+
         boolean twoDeviceKeys = mode.startsWith("twokey");
         boolean multisig = twoDeviceKeys || mode.startsWith("multisig");
         ScriptType scriptType = multisig ? ScriptType.P2WSH : ScriptType.valueOf(args[1]);
@@ -204,6 +217,14 @@ public class TrezorEmulatorHarness {
                 : (multisig ? multisigWallet(client) : deviceWallet(client, scriptType));
         if(multisig) {
             mode = mode.substring(twoDeviceKeys ? "twokey".length() : "multisig".length()).toLowerCase();
+        }
+
+        if("xpub".equals(mode)) {
+            //What a wallet imports from the device, and the fingerprint it files it under.
+            String accountPath = ScriptType.valueOf(args[1]).getDefaultDerivationPath();
+            System.out.println("XPUB=" + client.getPubKeyAtPath(accountPath));
+            System.out.println("FP=" + client.fingerprint());
+            return;
         }
 
         if("scriptpubkey".equals(mode)) {
@@ -219,7 +240,17 @@ public class TrezorEmulatorHarness {
         long prevValue = Long.parseLong(args[4]);
         byte[] destScript = Utils.hexToBytes(args[5]);
         long destValue = Long.parseLong(args[6]);
-        boolean unified = Boolean.parseBoolean(args[7]);
+        //"true"/"false" pick the two ordinary types; anything else names a SigHash directly, which is
+        //how the types the device must refuse are exercised.
+        SigHash requestedSigHash;
+        if(args[7].equalsIgnoreCase("true")) {
+            requestedSigHash = SigHash.UNIFIED_ALL;
+        } else if(args[7].equalsIgnoreCase("false")) {
+            requestedSigHash = scriptType == ScriptType.P2TR ? SigHash.DEFAULT : SigHash.ALL;
+        } else {
+            requestedSigHash = SigHash.valueOf(args[7]);
+        }
+        boolean unified = requestedSigHash.isUnified();
         Transaction prevTx = new Transaction(Utils.hexToBytes(args[8]));
 
         WalletNode receiveNode = firstReceiveNode(wallet);
@@ -252,7 +283,7 @@ public class TrezorEmulatorHarness {
                         keystore.getPubKey(receiveNode),
                         keystore.getKeyDerivation().extend(receiveNode.getDerivation()));
             }
-            psbtInput.setSigHash(unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
+            psbtInput.setSigHash(requestedSigHash);
             System.out.println("DECLARED=" + psbtInput.getSigHash());
 
             //The device signs first. With one device key a software cosigner finishes it; with two, the
@@ -285,7 +316,7 @@ public class TrezorEmulatorHarness {
             psbtInput.setRedeemScript(ScriptType.P2WPKH.getOutputScript(PolicyType.SINGLE_HD, pubKey));
         }
 
-        psbtInput.setSigHash(unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
+        psbtInput.setSigHash(requestedSigHash);
         System.out.println("DECLARED=" + psbtInput.getSigHash());
 
         client.signTransaction(psbt);
