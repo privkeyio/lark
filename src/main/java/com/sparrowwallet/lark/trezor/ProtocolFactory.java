@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.Arrays;
 
 /**
  * Factory for creating Protocol instances with automatic version detection.
@@ -25,6 +26,13 @@ class ProtocolFactory {
     private static final Logger log = LoggerFactory.getLogger(ProtocolFactory.class);
 
     private static final int PROBE_TIMEOUT_MS = 2000;
+
+    /** Protocol v1 prefixes the first chunk of a message with "?##", and every chunk that follows with "?" */
+    private static final byte[] FIRST_CHUNK_MAGIC = { '?', '#', '#' };
+    private static final byte[] CONTINUATION_CHUNK_MAGIC = { '?' };
+
+    /** The first chunk carries the magic, a 2 byte message type and a 4 byte length */
+    private static final int FIRST_CHUNK_HEADER_LENGTH = 9;
 
     /**
      * Create Protocol with automatic version detection and custom credential store.
@@ -81,7 +89,10 @@ class ProtocolFactory {
                 // Timeout is expected when buffer is empty
             }
 
-            // Send a Ping message using V1 protocol format
+            // Send a Ping message using V1 protocol format. The Python reference sends Cancel here to end
+            // any workflow a previous connection left running, but a device is opened once per operation,
+            // so the probe runs between prompting for a PIN and sending it - cancelling there discards the
+            // matrix the PIN positions refer to and every PIN is then rejected
             TrezorMessageManagement.Ping ping = TrezorMessageManagement.Ping.newBuilder().setMessage("protocol-v1-probe").build();
 
             // Encode and write using V1 format
@@ -108,7 +119,7 @@ class ProtocolFactory {
                     while(actualLength > 0 && response.messageBytes[actualLength - 1] == 0) {
                         actualLength--;
                     }
-                    byte[] trimmed = java.util.Arrays.copyOf(response.messageBytes, actualLength);
+                    byte[] trimmed = Arrays.copyOf(response.messageBytes, actualLength);
 
                     TrezorMessageCommon.Failure failure = TrezorMessageCommon.Failure.parseFrom(trimmed);
 
@@ -190,12 +201,10 @@ class ProtocolFactory {
      */
     private static MessageResponse readV1Message(Transport transport) throws DeviceException {
         try {
-            // Read first chunk
-            byte[] firstChunk = transport.read(PROBE_TIMEOUT_MS);
+            long deadline = System.currentTimeMillis() + PROBE_TIMEOUT_MS;
 
-            if(firstChunk[0] != '?' || firstChunk[1] != '#' || firstChunk[2] != '#') {
-                throw new DeviceException("Invalid V1 protocol header");
-            }
+            // Read first chunk
+            byte[] firstChunk = readV1Chunk(transport, deadline, FIRST_CHUNK_MAGIC, FIRST_CHUNK_HEADER_LENGTH);
 
             // Parse header (2-byte type + 4-byte length)
             ByteBuffer headerBuf = ByteBuffer.wrap(firstChunk, 3, 6);
@@ -210,10 +219,7 @@ class ProtocolFactory {
 
             // Read continuation chunks if needed
             while(dataStream.size() < msgLen) {
-                byte[] chunk = transport.read(PROBE_TIMEOUT_MS);
-                if(chunk[0] != '?') {
-                    throw new DeviceException("Invalid V1 continuation chunk");
-                }
+                byte[] chunk = readV1Chunk(transport, deadline, CONTINUATION_CHUNK_MAGIC, CONTINUATION_CHUNK_MAGIC.length);
                 int copyLen = Math.min(chunk.length - 1, msgLen - dataStream.size());
                 dataStream.write(chunk, 1, copyLen);
             }
@@ -223,6 +229,52 @@ class ProtocolFactory {
             throw e;
         } catch(Exception e) {
             throw new DeviceException("Error reading V1 message during probe", e);
+        }
+    }
+
+    /**
+     * Read the next chunk carrying the given protocol v1 magic, skipping any chunk that does not.
+     *
+     * A THP device sends its own packets in reply to messages it cannot parse, and an earlier attempt may
+     * have left packets in flight, so discarding them here also leaves the pipe clean for the protocol
+     * that is selected.
+     *
+     * @param magic The chunk prefix to look for
+     * @param minimumLength The shortest chunk that can carry this magic and the header following it, so
+     *                      that a chunk too short to parse is skipped rather than read past the end of
+     */
+    private static byte[] readV1Chunk(Transport transport, long deadline, byte[] magic, int minimumLength) throws DeviceException {
+        boolean skippedChunk = false;
+
+        while(true) {
+            byte[] chunk = null;
+            long remainingMs = deadline - System.currentTimeMillis();
+            if(remainingMs > 0) {
+                try {
+                    chunk = transport.read((int)remainingMs);
+                } catch(DeviceTimeoutException e) {
+                    //nothing arrived before the deadline
+                }
+            }
+
+            if(chunk == null) {
+                // A device that replied, just not in V1 framing, speaks THP only. Only silence leaves open
+                // that this is a V1 device too busy to reply, which the caller treats as V1 capable
+                if(skippedChunk) {
+                    throw new DeviceException("Device did not reply in V1 framing during probe");
+                }
+
+                throw new DeviceTimeoutException("Timed out reading V1 message during probe");
+            }
+
+            if(chunk.length >= minimumLength && Arrays.equals(chunk, 0, magic.length, magic, 0, magic.length)) {
+                return chunk;
+            }
+
+            skippedChunk = true;
+            if(log.isDebugEnabled()) {
+                log.debug("Skipping chunk that is not a V1 message chunk during probe: {}", com.sparrowwallet.drongo.Utils.bytesToHex(chunk));
+            }
         }
     }
 
