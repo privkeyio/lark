@@ -162,6 +162,30 @@ public class TrezorEmulatorHarness {
         return wallet;
     }
 
+    /**
+     * A 2-of-2 where both keys are on the same device, two accounts apart. This is the case that makes
+     * TrezorClient run its signing loop more than once, which a wallet with one device key never does.
+     */
+    private static Wallet twoDeviceKeyWallet(EmulatorClient client) throws DeviceException {
+        Wallet wallet = new Wallet();
+        wallet.setPolicyType(PolicyType.MULTI_HD);
+        wallet.setScriptType(ScriptType.P2WSH);
+
+        for(int account = 0; account < 2; account++) {
+            String accountPath = KeyDerivation.writePath(ScriptType.P2WSH.getDefaultDerivation(account));
+            Keystore keystore = new Keystore("Trezor" + account);
+            keystore.setSource(KeystoreSource.HW_USB);
+            keystore.setWalletModel(WalletModel.TREZOR_1);
+            keystore.setKeyDerivation(new KeyDerivation(client.fingerprint(), accountPath));
+            keystore.setExtendedPublicKey(client.getPubKeyAtPath(accountPath));
+            wallet.getKeystores().add(keystore);
+        }
+
+        wallet.setDefaultPolicy(Policy.getPolicy(PolicyType.MULTI_HD, ScriptType.P2WSH, wallet.getKeystores(), 2));
+        wallet.getNode(KeyPurpose.RECEIVE);
+        return wallet;
+    }
+
     private static WalletNode firstReceiveNode(Wallet wallet) {
         return wallet.getNode(KeyPurpose.RECEIVE).getChildren().iterator().next();
     }
@@ -173,11 +197,13 @@ public class TrezorEmulatorHarness {
         client.initializeMasterFingerprint();
 
         String mode = args[0];
-        boolean multisig = mode.startsWith("multisig");
+        boolean twoDeviceKeys = mode.startsWith("twokey");
+        boolean multisig = twoDeviceKeys || mode.startsWith("multisig");
         ScriptType scriptType = multisig ? ScriptType.P2WSH : ScriptType.valueOf(args[1]);
-        Wallet wallet = multisig ? multisigWallet(client) : deviceWallet(client, scriptType);
+        Wallet wallet = twoDeviceKeys ? twoDeviceKeyWallet(client)
+                : (multisig ? multisigWallet(client) : deviceWallet(client, scriptType));
         if(multisig) {
-            mode = mode.substring("multisig".length()).toLowerCase();
+            mode = mode.substring(twoDeviceKeys ? "twokey".length() : "multisig".length()).toLowerCase();
         }
 
         if("scriptpubkey".equals(mode)) {
@@ -229,9 +255,12 @@ public class TrezorEmulatorHarness {
             psbtInput.setSigHash(unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
             System.out.println("DECLARED=" + psbtInput.getSigHash());
 
-            //The device signs first, then the software cosigner finishes it under the same hash type.
+            //The device signs first. With one device key a software cosigner finishes it; with two, the
+            //device supplies both and TrezorClient runs its loop twice.
             client.signTransaction(psbt);
-            wallet.sign(psbt);
+            if(!twoDeviceKeys) {
+                wallet.sign(psbt);
+            }
 
             TransactionSignature deviceSignature = psbtInput.getPartialSignatures().values().iterator().next();
             System.out.println("RETURNED_SIGHASH=0x" + String.format("%02x", deviceSignature.sighashFlags));
