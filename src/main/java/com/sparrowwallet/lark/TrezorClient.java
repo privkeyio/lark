@@ -80,6 +80,16 @@ public class TrezorClient extends HardwareClient {
         }
     }
 
+    /**
+     * For a client that reaches its device over something other than USB, which is how the emulator
+     * harness drives the shipped signing path. Subclasses supply the transport in openDevice().
+     */
+    protected TrezorClient(TrezorModel trezorModel) {
+        this.device = null;
+        this.busNumber = 0;
+        this.trezorModel = trezorModel;
+    }
+
     private void prepareDevice(TrezorDevice trezorDevice) throws DeviceException {
         trezorDevice.refreshFeatures();
         if(trezorDevice.getModel() == TrezorModel.T1B1 || trezorDevice.getModel() == TrezorModel.KEEPKEY || trezorDevice.getModel() == TrezorModel.ONEKEY_CLASSIC_1S) {
@@ -143,7 +153,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     void initializeMasterFingerprint() throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             prepareDevice(trezorDevice);
         }
     }
@@ -154,7 +164,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     ExtendedKey getPubKeyAtPath(String path) throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
             TrezorMessageBitcoin.PublicKey publicKey = trezorDevice.getPublicNode(Network.get(), KeyDerivation.parsePath(path));
             return ExtendedKey.fromDescriptor(publicKey.getXpub());
@@ -172,9 +182,17 @@ public class TrezorClient extends HardwareClient {
      * @return the signed PSBT
      * @throws DeviceException on an error
      */
+    /**
+     * Opens the device this client was found on. Overridden by the emulator harness, which reaches the
+     * same firmware over UDP instead of USB, so the signing path under test is the shipped one.
+     */
+    protected TrezorDevice openDevice() throws DeviceException {
+        return new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig);
+    }
+
     @Override
     PSBT signTransaction(PSBT psbt) throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
 
             int passes = 1;
@@ -183,6 +201,7 @@ public class TrezorClient extends HardwareClient {
             while(p < passes) {
                 List<TrezorMessageBitcoin.TxInput> inputs = new ArrayList<>();
                 List<Integer> toIgnore = new ArrayList<>();
+                List<Integer> unifiedRequested = new ArrayList<>();
 
                 for(int inputIndex = 0; inputIndex < psbt.getPsbtInputs().size(); inputIndex++) {
                     PSBTInput psbtInput = psbt.getPsbtInputs().get(inputIndex);
@@ -332,6 +351,19 @@ public class TrezorClient extends HardwareClient {
                         toIgnore.add(inputIndex);
                     }
 
+                    //The unified opt-in travels in the PSBT's hash type. Trezor signs SIGHASH_ALL and
+                    //nothing else, so any other unified variant has to be refused rather than quietly
+                    //signed as ALL, which would return a signature the PSBT does not describe.
+                    SigHash sigHash = psbtInput.getSigHash();
+                    if(sigHash != null && sigHash.isUnified()) {
+                        if(sigHash != SigHash.UNIFIED_ALL) {
+                            throw new DeviceException("Trezor can only sign SIGHASH_ALL, so it cannot produce " + sigHash.getName()
+                                    + " for input " + inputIndex);
+                        }
+                        txInput.setUnifiedSighash(true);
+                        unifiedRequested.add(inputIndex);
+                    }
+
                     inputs.add(txInput.build());
                 }
 
@@ -446,6 +478,20 @@ public class TrezorClient extends HardwareClient {
                 List<TransactionSignature> signatures = trezorDevice.signTx(Network.get(), inputs, outputs, prevTxs,
                         psbt.getTransaction().getVersion(), psbt.getTransaction().getLocktime());
 
+                //Firmware without the opt-in ignores the field and signs the legacy digest, which would
+                //be a transaction with none of the replay protection the PSBT asked for and no error to
+                //say so. Check what came back rather than trusting that the request was understood.
+                for(int inputIndex : unifiedRequested) {
+                    if(toIgnore.contains(inputIndex)) {
+                        continue;
+                    }
+                    TransactionSignature signature = signatures.get(inputIndex);
+                    if(signature != null && (signature.sighashFlags & SigHash.UNIFIED_FLAG) == 0) {
+                        throw new DeviceException("This Trezor signed input " + inputIndex + " without the unified signature hash, "
+                                + "which its firmware does not implement. The transaction would have no replay protection.");
+                    }
+                }
+
                 for(int inputIndex = 0; inputIndex < psbt.getPsbtInputs().size(); inputIndex++) {
                     PSBTInput psbtInput = psbt.getPsbtInputs().get(inputIndex);
                     if(toIgnore.contains(inputIndex)) {
@@ -536,7 +582,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     String signMessage(String message, String path) throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
 
             TrezorMessageBitcoin.InputScriptType scriptType = TrezorMessageBitcoin.InputScriptType.SPENDADDRESS;
@@ -553,7 +599,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     String displaySinglesigAddress(String path, ScriptType scriptType) throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
 
             TrezorMessageBitcoin.InputScriptType inputScriptType = switch(scriptType) {
@@ -575,7 +621,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     String displayMultisigAddress(OutputDescriptor outputDescriptor) throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
 
             List<TrezorMessageBitcoin.MultisigRedeemScriptType.HDNodePathType> pubkeys = new ArrayList<>();
@@ -624,7 +670,7 @@ public class TrezorClient extends HardwareClient {
 
     @Override
     public boolean promptPin() throws DeviceException {
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             try {
                 prepareDevice(trezorDevice);
             } catch(DeviceNotReadyException e) {
@@ -660,7 +706,7 @@ public class TrezorClient extends HardwareClient {
             throw new IllegalArgumentException("Non-numeric PIN provided");
         }
 
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             Message message = trezorDevice.callRaw(TrezorMessageCommon.PinMatrixAck.newBuilder().setPin(pin).build());
             if(message instanceof TrezorMessageCommon.Failure) {
                 TrezorMessageManagement.Features features = trezorDevice.refreshFeatures();
@@ -691,7 +737,7 @@ public class TrezorClient extends HardwareClient {
             passphrase = "";
         }
 
-        try(TrezorDevice trezorDevice = new TrezorDevice(device, new PassphraseUI(passphrase), trezorModel, noiseConfig)) {
+        try(TrezorDevice trezorDevice = openDevice()) {
             checkUnlocked(trezorDevice);
 
             try {

@@ -827,7 +827,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -836,7 +836,7 @@ public final class TrezorMessageBitcoin {
         getPubkeysList();
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -844,7 +844,7 @@ public final class TrezorMessageBitcoin {
     com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType.HDNodePathType getPubkeys(int index);
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -852,7 +852,7 @@ public final class TrezorMessageBitcoin {
     int getPubkeysCount();
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -861,7 +861,7 @@ public final class TrezorMessageBitcoin {
         getPubkeysOrBuilderList();
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -871,7 +871,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -880,7 +880,7 @@ public final class TrezorMessageBitcoin {
     java.util.List<com.google.protobuf.ByteString> getSignaturesList();
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -889,7 +889,7 @@ public final class TrezorMessageBitcoin {
     int getSignaturesCount();
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -1930,7 +1930,7 @@ public final class TrezorMessageBitcoin {
     private java.util.List<com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType.HDNodePathType> pubkeys_;
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -1941,7 +1941,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -1953,7 +1953,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -1964,7 +1964,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -1975,7 +1975,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+     * this field is deprecated and will be removed in the
      * </pre>
      *
      * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -1992,7 +1992,7 @@ public final class TrezorMessageBitcoin {
         emptyList(com.google.protobuf.ByteString.class);
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -2005,7 +2005,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -2016,7 +2016,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * existing signatures for partially signed input
+     * future, use nodes together with address_n instead
      * </pre>
      *
      * <code>repeated bytes signatures = 2;</code>
@@ -2777,7 +2777,7 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2791,7 +2791,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2805,7 +2805,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2819,7 +2819,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2840,7 +2840,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2858,7 +2858,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2878,7 +2878,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2899,7 +2899,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2917,7 +2917,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2935,7 +2935,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2954,7 +2954,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2971,7 +2971,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2988,7 +2988,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -2999,7 +2999,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -3013,7 +3013,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -3028,7 +3028,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -3039,7 +3039,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -3051,7 +3051,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * this field is deprecated and will be removed in the future, use nodes together with address_n instead
+       * this field is deprecated and will be removed in the
        * </pre>
        *
        * <code>repeated .hw.trezor.messages.bitcoin.MultisigRedeemScriptType.HDNodePathType pubkeys = 1;</code>
@@ -3084,7 +3084,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3097,7 +3097,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3108,7 +3108,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3120,7 +3120,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3139,7 +3139,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3156,7 +3156,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -3174,7 +3174,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * existing signatures for partially signed input
+       * future, use nodes together with address_n instead
        * </pre>
        *
        * <code>repeated bytes signatures = 2;</code>
@@ -10678,7 +10678,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+     * don't include script type information in the recovery byte
      * </pre>
      *
      * <code>optional bool no_script_type = 5;</code>
@@ -10687,7 +10687,7 @@ public final class TrezorMessageBitcoin {
     boolean hasNoScriptType();
     /**
      * <pre>
-     * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+     * don't include script type information in the recovery byte
      * </pre>
      *
      * <code>optional bool no_script_type = 5;</code>
@@ -10697,7 +10697,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * display the address in chunks of 4 characters
+     * of the signature, same as in Bitcoin Core
      * </pre>
      *
      * <code>optional bool chunkify = 6;</code>
@@ -10706,7 +10706,7 @@ public final class TrezorMessageBitcoin {
     boolean hasChunkify();
     /**
      * <pre>
-     * display the address in chunks of 4 characters
+     * of the signature, same as in Bitcoin Core
      * </pre>
      *
      * <code>optional bool chunkify = 6;</code>
@@ -10923,7 +10923,7 @@ public final class TrezorMessageBitcoin {
     private boolean noScriptType_ = false;
     /**
      * <pre>
-     * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+     * don't include script type information in the recovery byte
      * </pre>
      *
      * <code>optional bool no_script_type = 5;</code>
@@ -10935,7 +10935,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+     * don't include script type information in the recovery byte
      * </pre>
      *
      * <code>optional bool no_script_type = 5;</code>
@@ -10950,7 +10950,7 @@ public final class TrezorMessageBitcoin {
     private boolean chunkify_ = false;
     /**
      * <pre>
-     * display the address in chunks of 4 characters
+     * of the signature, same as in Bitcoin Core
      * </pre>
      *
      * <code>optional bool chunkify = 6;</code>
@@ -10962,7 +10962,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * display the address in chunks of 4 characters
+     * of the signature, same as in Bitcoin Core
      * </pre>
      *
      * <code>optional bool chunkify = 6;</code>
@@ -11797,7 +11797,7 @@ public final class TrezorMessageBitcoin {
       private boolean noScriptType_ ;
       /**
        * <pre>
-       * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+       * don't include script type information in the recovery byte
        * </pre>
        *
        * <code>optional bool no_script_type = 5;</code>
@@ -11809,7 +11809,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+       * don't include script type information in the recovery byte
        * </pre>
        *
        * <code>optional bool no_script_type = 5;</code>
@@ -11821,7 +11821,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+       * don't include script type information in the recovery byte
        * </pre>
        *
        * <code>optional bool no_script_type = 5;</code>
@@ -11837,7 +11837,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * don't include script type information in the recovery byte of the signature, same as in Bitcoin Core
+       * don't include script type information in the recovery byte
        * </pre>
        *
        * <code>optional bool no_script_type = 5;</code>
@@ -11853,7 +11853,7 @@ public final class TrezorMessageBitcoin {
       private boolean chunkify_ ;
       /**
        * <pre>
-       * display the address in chunks of 4 characters
+       * of the signature, same as in Bitcoin Core
        * </pre>
        *
        * <code>optional bool chunkify = 6;</code>
@@ -11865,7 +11865,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * display the address in chunks of 4 characters
+       * of the signature, same as in Bitcoin Core
        * </pre>
        *
        * <code>optional bool chunkify = 6;</code>
@@ -11877,7 +11877,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * display the address in chunks of 4 characters
+       * of the signature, same as in Bitcoin Core
        * </pre>
        *
        * <code>optional bool chunkify = 6;</code>
@@ -11893,7 +11893,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * display the address in chunks of 4 characters
+       * of the signature, same as in Bitcoin Core
        * </pre>
        *
        * <code>optional bool chunkify = 6;</code>
@@ -14088,7 +14088,7 @@ public final class TrezorMessageBitcoin {
      *
      * <code>optional bool overwintered = 7 [deprecated = true];</code>
      * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-     *     See messages-bitcoin.proto;l=203
+     *     See messages-bitcoin.proto;l=210
      * @return Whether the overwintered field is set.
      */
     @java.lang.Deprecated boolean hasOverwintered();
@@ -14099,7 +14099,7 @@ public final class TrezorMessageBitcoin {
      *
      * <code>optional bool overwintered = 7 [deprecated = true];</code>
      * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-     *     See messages-bitcoin.proto;l=203
+     *     See messages-bitcoin.proto;l=210
      * @return The overwintered.
      */
     @java.lang.Deprecated boolean getOverwintered();
@@ -14338,7 +14338,7 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+       * PlebsDontPayThreshold in Wasabi, the input amount
        * </pre>
        *
        * <code>required uint64 no_fee_threshold = 2;</code>
@@ -14347,7 +14347,7 @@ public final class TrezorMessageBitcoin {
       boolean hasNoFeeThreshold();
       /**
        * <pre>
-       * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+       * PlebsDontPayThreshold in Wasabi, the input amount
        * </pre>
        *
        * <code>required uint64 no_fee_threshold = 2;</code>
@@ -14357,7 +14357,7 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * minimum registrable output amount
+       * above which the fee rate applies
        * </pre>
        *
        * <code>required uint64 min_registrable_amount = 3;</code>
@@ -14366,7 +14366,7 @@ public final class TrezorMessageBitcoin {
       boolean hasMinRegistrableAmount();
       /**
        * <pre>
-       * minimum registrable output amount
+       * above which the fee rate applies
        * </pre>
        *
        * <code>required uint64 min_registrable_amount = 3;</code>
@@ -14376,7 +14376,7 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+       * ephemeral secp256k1 public key used for masking
        * </pre>
        *
        * <code>optional bytes mask_public_key = 4;</code>
@@ -14385,7 +14385,7 @@ public final class TrezorMessageBitcoin {
       boolean hasMaskPublicKey();
       /**
        * <pre>
-       * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+       * ephemeral secp256k1 public key used for masking
        * </pre>
        *
        * <code>optional bytes mask_public_key = 4;</code>
@@ -14395,7 +14395,7 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * the trusted party's signature of the CoinJoin request digest
+       * coinjoin_flags, 33 bytes in compressed form
        * </pre>
        *
        * <code>optional bytes signature = 5;</code>
@@ -14404,7 +14404,7 @@ public final class TrezorMessageBitcoin {
       boolean hasSignature();
       /**
        * <pre>
-       * the trusted party's signature of the CoinJoin request digest
+       * coinjoin_flags, 33 bytes in compressed form
        * </pre>
        *
        * <code>optional bytes signature = 5;</code>
@@ -14488,7 +14488,7 @@ public final class TrezorMessageBitcoin {
       private long noFeeThreshold_ = 0L;
       /**
        * <pre>
-       * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+       * PlebsDontPayThreshold in Wasabi, the input amount
        * </pre>
        *
        * <code>required uint64 no_fee_threshold = 2;</code>
@@ -14500,7 +14500,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+       * PlebsDontPayThreshold in Wasabi, the input amount
        * </pre>
        *
        * <code>required uint64 no_fee_threshold = 2;</code>
@@ -14515,7 +14515,7 @@ public final class TrezorMessageBitcoin {
       private long minRegistrableAmount_ = 0L;
       /**
        * <pre>
-       * minimum registrable output amount
+       * above which the fee rate applies
        * </pre>
        *
        * <code>required uint64 min_registrable_amount = 3;</code>
@@ -14527,7 +14527,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * minimum registrable output amount
+       * above which the fee rate applies
        * </pre>
        *
        * <code>required uint64 min_registrable_amount = 3;</code>
@@ -14542,7 +14542,7 @@ public final class TrezorMessageBitcoin {
       private com.google.protobuf.ByteString maskPublicKey_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+       * ephemeral secp256k1 public key used for masking
        * </pre>
        *
        * <code>optional bytes mask_public_key = 4;</code>
@@ -14554,7 +14554,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+       * ephemeral secp256k1 public key used for masking
        * </pre>
        *
        * <code>optional bytes mask_public_key = 4;</code>
@@ -14569,7 +14569,7 @@ public final class TrezorMessageBitcoin {
       private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * the trusted party's signature of the CoinJoin request digest
+       * coinjoin_flags, 33 bytes in compressed form
        * </pre>
        *
        * <code>optional bytes signature = 5;</code>
@@ -14581,7 +14581,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * the trusted party's signature of the CoinJoin request digest
+       * coinjoin_flags, 33 bytes in compressed form
        * </pre>
        *
        * <code>optional bytes signature = 5;</code>
@@ -15096,7 +15096,7 @@ public final class TrezorMessageBitcoin {
         private long noFeeThreshold_ ;
         /**
          * <pre>
-         * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+         * PlebsDontPayThreshold in Wasabi, the input amount
          * </pre>
          *
          * <code>required uint64 no_fee_threshold = 2;</code>
@@ -15108,7 +15108,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+         * PlebsDontPayThreshold in Wasabi, the input amount
          * </pre>
          *
          * <code>required uint64 no_fee_threshold = 2;</code>
@@ -15120,7 +15120,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+         * PlebsDontPayThreshold in Wasabi, the input amount
          * </pre>
          *
          * <code>required uint64 no_fee_threshold = 2;</code>
@@ -15136,7 +15136,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * PlebsDontPayThreshold in Wasabi, the input amount above which the fee rate applies
+         * PlebsDontPayThreshold in Wasabi, the input amount
          * </pre>
          *
          * <code>required uint64 no_fee_threshold = 2;</code>
@@ -15152,7 +15152,7 @@ public final class TrezorMessageBitcoin {
         private long minRegistrableAmount_ ;
         /**
          * <pre>
-         * minimum registrable output amount
+         * above which the fee rate applies
          * </pre>
          *
          * <code>required uint64 min_registrable_amount = 3;</code>
@@ -15164,7 +15164,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * minimum registrable output amount
+         * above which the fee rate applies
          * </pre>
          *
          * <code>required uint64 min_registrable_amount = 3;</code>
@@ -15176,7 +15176,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * minimum registrable output amount
+         * above which the fee rate applies
          * </pre>
          *
          * <code>required uint64 min_registrable_amount = 3;</code>
@@ -15192,7 +15192,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * minimum registrable output amount
+         * above which the fee rate applies
          * </pre>
          *
          * <code>required uint64 min_registrable_amount = 3;</code>
@@ -15208,7 +15208,7 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString maskPublicKey_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+         * ephemeral secp256k1 public key used for masking
          * </pre>
          *
          * <code>optional bytes mask_public_key = 4;</code>
@@ -15220,7 +15220,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+         * ephemeral secp256k1 public key used for masking
          * </pre>
          *
          * <code>optional bytes mask_public_key = 4;</code>
@@ -15232,7 +15232,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+         * ephemeral secp256k1 public key used for masking
          * </pre>
          *
          * <code>optional bytes mask_public_key = 4;</code>
@@ -15248,7 +15248,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * ephemeral secp256k1 public key used for masking coinjoin_flags, 33 bytes in compressed form
+         * ephemeral secp256k1 public key used for masking
          * </pre>
          *
          * <code>optional bytes mask_public_key = 4;</code>
@@ -15264,7 +15264,7 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * the trusted party's signature of the CoinJoin request digest
+         * coinjoin_flags, 33 bytes in compressed form
          * </pre>
          *
          * <code>optional bytes signature = 5;</code>
@@ -15276,7 +15276,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * the trusted party's signature of the CoinJoin request digest
+         * coinjoin_flags, 33 bytes in compressed form
          * </pre>
          *
          * <code>optional bytes signature = 5;</code>
@@ -15288,7 +15288,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * the trusted party's signature of the CoinJoin request digest
+         * coinjoin_flags, 33 bytes in compressed form
          * </pre>
          *
          * <code>optional bytes signature = 5;</code>
@@ -15304,7 +15304,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * the trusted party's signature of the CoinJoin request digest
+         * coinjoin_flags, 33 bytes in compressed form
          * </pre>
          *
          * <code>optional bytes signature = 5;</code>
@@ -15574,7 +15574,7 @@ public final class TrezorMessageBitcoin {
      *
      * <code>optional bool overwintered = 7 [deprecated = true];</code>
      * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-     *     See messages-bitcoin.proto;l=203
+     *     See messages-bitcoin.proto;l=210
      * @return Whether the overwintered field is set.
      */
     @java.lang.Override
@@ -15588,7 +15588,7 @@ public final class TrezorMessageBitcoin {
      *
      * <code>optional bool overwintered = 7 [deprecated = true];</code>
      * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-     *     See messages-bitcoin.proto;l=203
+     *     See messages-bitcoin.proto;l=210
      * @return The overwintered.
      */
     @java.lang.Override
@@ -16979,7 +16979,7 @@ public final class TrezorMessageBitcoin {
        *
        * <code>optional bool overwintered = 7 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=203
+       *     See messages-bitcoin.proto;l=210
        * @return Whether the overwintered field is set.
        */
       @java.lang.Override
@@ -16993,7 +16993,7 @@ public final class TrezorMessageBitcoin {
        *
        * <code>optional bool overwintered = 7 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=203
+       *     See messages-bitcoin.proto;l=210
        * @return The overwintered.
        */
       @java.lang.Override
@@ -17007,7 +17007,7 @@ public final class TrezorMessageBitcoin {
        *
        * <code>optional bool overwintered = 7 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=203
+       *     See messages-bitcoin.proto;l=210
        * @param value The overwintered to set.
        * @return This builder for chaining.
        */
@@ -17025,7 +17025,7 @@ public final class TrezorMessageBitcoin {
        *
        * <code>optional bool overwintered = 7 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.SignTx.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=203
+       *     See messages-bitcoin.proto;l=210
        * @return This builder for chaining.
        */
       @java.lang.Deprecated public Builder clearOverwintered() {
@@ -20779,30 +20779,30 @@ public final class TrezorMessageBitcoin {
 
       /**
        * <pre>
-       * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+       * Zcash only; deprecated in 2.3.2, the field is not
        * </pre>
        *
        * <code>optional bool overwintered = 11 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=304
+       *     See messages-bitcoin.proto;l=315
        * @return Whether the overwintered field is set.
        */
       @java.lang.Deprecated boolean hasOverwintered();
       /**
        * <pre>
-       * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+       * Zcash only; deprecated in 2.3.2, the field is not
        * </pre>
        *
        * <code>optional bool overwintered = 11 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=304
+       *     See messages-bitcoin.proto;l=315
        * @return The overwintered.
        */
       @java.lang.Deprecated boolean getOverwintered();
 
       /**
        * <pre>
-       * only for Zcash, nVersionGroupId
+       * needed, it can be derived from `version`
        * </pre>
        *
        * <code>optional uint32 version_group_id = 12;</code>
@@ -20811,7 +20811,7 @@ public final class TrezorMessageBitcoin {
       boolean hasVersionGroupId();
       /**
        * <pre>
-       * only for Zcash, nVersionGroupId
+       * needed, it can be derived from `version`
        * </pre>
        *
        * <code>optional uint32 version_group_id = 12;</code>
@@ -21079,7 +21079,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+         * only for Decred, 0 is a normal transaction
          * </pre>
          *
          * <code>optional uint32 decred_tree = 9;</code>
@@ -21088,7 +21088,7 @@ public final class TrezorMessageBitcoin {
         boolean hasDecredTree();
         /**
          * <pre>
-         * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+         * only for Decred, 0 is a normal transaction
          * </pre>
          *
          * <code>optional uint32 decred_tree = 9;</code>
@@ -21098,9 +21098,10 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-         * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-         * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+         * while 1 is a stake transaction
+         * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+         * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+         * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
          * </pre>
          *
          * <code>optional bytes witness = 13;</code>
@@ -21109,9 +21110,10 @@ public final class TrezorMessageBitcoin {
         boolean hasWitness();
         /**
          * <pre>
-         * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-         * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-         * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+         * while 1 is a stake transaction
+         * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+         * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+         * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
          * </pre>
          *
          * <code>optional bytes witness = 13;</code>
@@ -21159,7 +21161,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+         * tx_hash of the original transaction where this input was spent (used when
          * </pre>
          *
          * <code>optional bytes orig_hash = 16;</code>
@@ -21168,7 +21170,7 @@ public final class TrezorMessageBitcoin {
         boolean hasOrigHash();
         /**
          * <pre>
-         * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+         * tx_hash of the original transaction where this input was spent (used when
          * </pre>
          *
          * <code>optional bytes orig_hash = 16;</code>
@@ -21178,7 +21180,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * index of the input in the original transaction (used when creating a replacement transaction)
+         * creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 17;</code>
@@ -21187,7 +21189,7 @@ public final class TrezorMessageBitcoin {
         boolean hasOrigIndex();
         /**
          * <pre>
-         * index of the input in the original transaction (used when creating a replacement transaction)
+         * creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 17;</code>
@@ -21197,7 +21199,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * if not None this holds the type of stake spend: revocation or stake generation
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -21206,7 +21208,7 @@ public final class TrezorMessageBitcoin {
         boolean hasDecredStakingSpend();
         /**
          * <pre>
-         * if not None this holds the type of stake spend: revocation or stake generation
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -21216,7 +21218,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+         * spend: revocation or stake generation
          * </pre>
          *
          * <code>optional bytes script_pubkey = 19;</code>
@@ -21225,7 +21227,7 @@ public final class TrezorMessageBitcoin {
         boolean hasScriptPubkey();
         /**
          * <pre>
-         * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+         * spend: revocation or stake generation
          * </pre>
          *
          * <code>optional bytes script_pubkey = 19;</code>
@@ -21235,7 +21237,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * bit field of CoinJoin-specific flags
+         * input, only set of EXTERNAL inputs
          * </pre>
          *
          * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -21244,13 +21246,32 @@ public final class TrezorMessageBitcoin {
         boolean hasCoinjoinFlags();
         /**
          * <pre>
-         * bit field of CoinJoin-specific flags
+         * input, only set of EXTERNAL inputs
          * </pre>
          *
          * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
          * @return The coinjoinFlags.
          */
         int getCoinjoinFlags();
+
+        /**
+         * <pre>
+         * see TxInput.unified_sighash. Firmware
+         * </pre>
+         *
+         * <code>optional bool unified_sighash = 21 [default = false];</code>
+         * @return Whether the unifiedSighash field is set.
+         */
+        boolean hasUnifiedSighash();
+        /**
+         * <pre>
+         * see TxInput.unified_sighash. Firmware
+         * </pre>
+         *
+         * <code>optional bool unified_sighash = 21 [default = false];</code>
+         * @return The unifiedSighash.
+         */
+        boolean getUnifiedSighash();
       }
       /**
        * <pre>
@@ -21550,7 +21571,7 @@ public final class TrezorMessageBitcoin {
         private int decredTree_ = 0;
         /**
          * <pre>
-         * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+         * only for Decred, 0 is a normal transaction
          * </pre>
          *
          * <code>optional uint32 decred_tree = 9;</code>
@@ -21562,7 +21583,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+         * only for Decred, 0 is a normal transaction
          * </pre>
          *
          * <code>optional uint32 decred_tree = 9;</code>
@@ -21577,9 +21598,10 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString witness_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-         * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-         * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+         * while 1 is a stake transaction
+         * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+         * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+         * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
          * </pre>
          *
          * <code>optional bytes witness = 13;</code>
@@ -21591,9 +21613,10 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-         * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-         * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+         * while 1 is a stake transaction
+         * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+         * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+         * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
          * </pre>
          *
          * <code>optional bytes witness = 13;</code>
@@ -21662,7 +21685,7 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+         * tx_hash of the original transaction where this input was spent (used when
          * </pre>
          *
          * <code>optional bytes orig_hash = 16;</code>
@@ -21674,7 +21697,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+         * tx_hash of the original transaction where this input was spent (used when
          * </pre>
          *
          * <code>optional bytes orig_hash = 16;</code>
@@ -21689,7 +21712,7 @@ public final class TrezorMessageBitcoin {
         private int origIndex_ = 0;
         /**
          * <pre>
-         * index of the input in the original transaction (used when creating a replacement transaction)
+         * creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 17;</code>
@@ -21701,7 +21724,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * index of the input in the original transaction (used when creating a replacement transaction)
+         * creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 17;</code>
@@ -21716,7 +21739,7 @@ public final class TrezorMessageBitcoin {
         private int decredStakingSpend_ = 0;
         /**
          * <pre>
-         * if not None this holds the type of stake spend: revocation or stake generation
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -21727,7 +21750,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * if not None this holds the type of stake spend: revocation or stake generation
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -21742,7 +21765,7 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString scriptPubkey_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+         * spend: revocation or stake generation
          * </pre>
          *
          * <code>optional bytes script_pubkey = 19;</code>
@@ -21754,7 +21777,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+         * spend: revocation or stake generation
          * </pre>
          *
          * <code>optional bytes script_pubkey = 19;</code>
@@ -21769,7 +21792,7 @@ public final class TrezorMessageBitcoin {
         private int coinjoinFlags_ = 0;
         /**
          * <pre>
-         * bit field of CoinJoin-specific flags
+         * input, only set of EXTERNAL inputs
          * </pre>
          *
          * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -21781,7 +21804,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * bit field of CoinJoin-specific flags
+         * input, only set of EXTERNAL inputs
          * </pre>
          *
          * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -21790,6 +21813,33 @@ public final class TrezorMessageBitcoin {
         @java.lang.Override
         public int getCoinjoinFlags() {
           return coinjoinFlags_;
+        }
+
+        public static final int UNIFIED_SIGHASH_FIELD_NUMBER = 21;
+        private boolean unifiedSighash_ = false;
+        /**
+         * <pre>
+         * see TxInput.unified_sighash. Firmware
+         * </pre>
+         *
+         * <code>optional bool unified_sighash = 21 [default = false];</code>
+         * @return Whether the unifiedSighash field is set.
+         */
+        @java.lang.Override
+        public boolean hasUnifiedSighash() {
+          return ((bitField0_ & 0x00010000) != 0);
+        }
+        /**
+         * <pre>
+         * see TxInput.unified_sighash. Firmware
+         * </pre>
+         *
+         * <code>optional bool unified_sighash = 21 [default = false];</code>
+         * @return The unifiedSighash.
+         */
+        @java.lang.Override
+        public boolean getUnifiedSighash() {
+          return unifiedSighash_;
         }
 
         private byte memoizedIsInitialized = -1;
@@ -21870,6 +21920,9 @@ public final class TrezorMessageBitcoin {
           }
           if (((bitField0_ & 0x00008000) != 0)) {
             output.writeUInt32(20, coinjoinFlags_);
+          }
+          if (((bitField0_ & 0x00010000) != 0)) {
+            output.writeBool(21, unifiedSighash_);
           }
           getUnknownFields().writeTo(output);
         }
@@ -21952,6 +22005,10 @@ public final class TrezorMessageBitcoin {
           if (((bitField0_ & 0x00008000) != 0)) {
             size += com.google.protobuf.CodedOutputStream
               .computeUInt32Size(20, coinjoinFlags_);
+          }
+          if (((bitField0_ & 0x00010000) != 0)) {
+            size += com.google.protobuf.CodedOutputStream
+              .computeBoolSize(21, unifiedSighash_);
           }
           size += getUnknownFields().getSerializedSize();
           memoizedSize = size;
@@ -22048,6 +22105,11 @@ public final class TrezorMessageBitcoin {
             if (getCoinjoinFlags()
                 != other.getCoinjoinFlags()) return false;
           }
+          if (hasUnifiedSighash() != other.hasUnifiedSighash()) return false;
+          if (hasUnifiedSighash()) {
+            if (getUnifiedSighash()
+                != other.getUnifiedSighash()) return false;
+          }
           if (!getUnknownFields().equals(other.getUnknownFields())) return false;
           return true;
         }
@@ -22127,6 +22189,11 @@ public final class TrezorMessageBitcoin {
           if (hasCoinjoinFlags()) {
             hash = (37 * hash) + COINJOIN_FLAGS_FIELD_NUMBER;
             hash = (53 * hash) + getCoinjoinFlags();
+          }
+          if (hasUnifiedSighash()) {
+            hash = (37 * hash) + UNIFIED_SIGHASH_FIELD_NUMBER;
+            hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+                getUnifiedSighash());
           }
           hash = (29 * hash) + getUnknownFields().hashCode();
           memoizedHashCode = hash;
@@ -22291,6 +22358,7 @@ public final class TrezorMessageBitcoin {
             decredStakingSpend_ = 0;
             scriptPubkey_ = com.google.protobuf.ByteString.EMPTY;
             coinjoinFlags_ = 0;
+            unifiedSighash_ = false;
             return this;
           }
 
@@ -22395,6 +22463,10 @@ public final class TrezorMessageBitcoin {
               result.coinjoinFlags_ = coinjoinFlags_;
               to_bitField0_ |= 0x00008000;
             }
+            if (((from_bitField0_ & 0x00020000) != 0)) {
+              result.unifiedSighash_ = unifiedSighash_;
+              to_bitField0_ |= 0x00010000;
+            }
             result.bitField0_ |= to_bitField0_;
           }
 
@@ -22468,6 +22540,9 @@ public final class TrezorMessageBitcoin {
             }
             if (other.hasCoinjoinFlags()) {
               setCoinjoinFlags(other.getCoinjoinFlags());
+            }
+            if (other.hasUnifiedSighash()) {
+              setUnifiedSighash(other.getUnifiedSighash());
             }
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
@@ -22618,6 +22693,11 @@ public final class TrezorMessageBitcoin {
                     bitField0_ |= 0x00010000;
                     break;
                   } // case 160
+                  case 168: {
+                    unifiedSighash_ = input.readBool();
+                    bitField0_ |= 0x00020000;
+                    break;
+                  } // case 168
                   default: {
                     if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                       done = true; // was an endgroup tag
@@ -23245,7 +23325,7 @@ public final class TrezorMessageBitcoin {
           private int decredTree_ ;
           /**
            * <pre>
-           * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+           * only for Decred, 0 is a normal transaction
            * </pre>
            *
            * <code>optional uint32 decred_tree = 9;</code>
@@ -23257,7 +23337,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+           * only for Decred, 0 is a normal transaction
            * </pre>
            *
            * <code>optional uint32 decred_tree = 9;</code>
@@ -23269,7 +23349,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+           * only for Decred, 0 is a normal transaction
            * </pre>
            *
            * <code>optional uint32 decred_tree = 9;</code>
@@ -23285,7 +23365,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * only for Decred, 0 is a normal transaction while 1 is a stake transaction
+           * only for Decred, 0 is a normal transaction
            * </pre>
            *
            * <code>optional uint32 decred_tree = 9;</code>
@@ -23301,9 +23381,10 @@ public final class TrezorMessageBitcoin {
           private com.google.protobuf.ByteString witness_ = com.google.protobuf.ByteString.EMPTY;
           /**
            * <pre>
-           * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-           * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-           * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+           * while 1 is a stake transaction
+           * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+           * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+           * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
            * </pre>
            *
            * <code>optional bytes witness = 13;</code>
@@ -23315,9 +23396,10 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-           * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-           * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+           * while 1 is a stake transaction
+           * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+           * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+           * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
            * </pre>
            *
            * <code>optional bytes witness = 13;</code>
@@ -23329,9 +23411,10 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-           * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-           * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+           * while 1 is a stake transaction
+           * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+           * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+           * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
            * </pre>
            *
            * <code>optional bytes witness = 13;</code>
@@ -23347,9 +23430,10 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 10;                         // only for Decred  // deprecated -&gt; only 0 is supported
-           * optional bytes prev_block_hash_bip115 = 11;     // BIP-115 support dropped
-           * optional uint32 prev_block_height_bip115 = 12;  // BIP-115 support dropped
+           * while 1 is a stake transaction
+           * optional uint32 decred_script_version = 10;   // only for  Decred  // deprecated -&gt; only 0 is supported
+           * optional bytes prev_block_hash_bip115 = 11;   // BIP-115 support dropped
+           * optional uint32 prev_block_height_bip115 = 12;// BIP-115 support dropped
            * </pre>
            *
            * <code>optional bytes witness = 13;</code>
@@ -23477,7 +23561,7 @@ public final class TrezorMessageBitcoin {
           private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
           /**
            * <pre>
-           * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+           * tx_hash of the original transaction where this input was spent (used when
            * </pre>
            *
            * <code>optional bytes orig_hash = 16;</code>
@@ -23489,7 +23573,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+           * tx_hash of the original transaction where this input was spent (used when
            * </pre>
            *
            * <code>optional bytes orig_hash = 16;</code>
@@ -23501,7 +23585,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+           * tx_hash of the original transaction where this input was spent (used when
            * </pre>
            *
            * <code>optional bytes orig_hash = 16;</code>
@@ -23517,7 +23601,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+           * tx_hash of the original transaction where this input was spent (used when
            * </pre>
            *
            * <code>optional bytes orig_hash = 16;</code>
@@ -23533,7 +23617,7 @@ public final class TrezorMessageBitcoin {
           private int origIndex_ ;
           /**
            * <pre>
-           * index of the input in the original transaction (used when creating a replacement transaction)
+           * creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 17;</code>
@@ -23545,7 +23629,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the input in the original transaction (used when creating a replacement transaction)
+           * creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 17;</code>
@@ -23557,7 +23641,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the input in the original transaction (used when creating a replacement transaction)
+           * creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 17;</code>
@@ -23573,7 +23657,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the input in the original transaction (used when creating a replacement transaction)
+           * creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 17;</code>
@@ -23589,7 +23673,7 @@ public final class TrezorMessageBitcoin {
           private int decredStakingSpend_ = 0;
           /**
            * <pre>
-           * if not None this holds the type of stake spend: revocation or stake generation
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -23600,7 +23684,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * if not None this holds the type of stake spend: revocation or stake generation
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -23613,7 +23697,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * if not None this holds the type of stake spend: revocation or stake generation
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -23631,7 +23715,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * if not None this holds the type of stake spend: revocation or stake generation
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -23647,7 +23731,7 @@ public final class TrezorMessageBitcoin {
           private com.google.protobuf.ByteString scriptPubkey_ = com.google.protobuf.ByteString.EMPTY;
           /**
            * <pre>
-           * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+           * spend: revocation or stake generation
            * </pre>
            *
            * <code>optional bytes script_pubkey = 19;</code>
@@ -23659,7 +23743,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+           * spend: revocation or stake generation
            * </pre>
            *
            * <code>optional bytes script_pubkey = 19;</code>
@@ -23671,7 +23755,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+           * spend: revocation or stake generation
            * </pre>
            *
            * <code>optional bytes script_pubkey = 19;</code>
@@ -23687,7 +23771,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * scriptPubKey of the previous output spent by this input, only set of EXTERNAL inputs
+           * spend: revocation or stake generation
            * </pre>
            *
            * <code>optional bytes script_pubkey = 19;</code>
@@ -23703,7 +23787,7 @@ public final class TrezorMessageBitcoin {
           private int coinjoinFlags_ ;
           /**
            * <pre>
-           * bit field of CoinJoin-specific flags
+           * input, only set of EXTERNAL inputs
            * </pre>
            *
            * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -23715,7 +23799,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * bit field of CoinJoin-specific flags
+           * input, only set of EXTERNAL inputs
            * </pre>
            *
            * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -23727,7 +23811,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * bit field of CoinJoin-specific flags
+           * input, only set of EXTERNAL inputs
            * </pre>
            *
            * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -23743,7 +23827,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * bit field of CoinJoin-specific flags
+           * input, only set of EXTERNAL inputs
            * </pre>
            *
            * <code>optional uint32 coinjoin_flags = 20 [default = 0];</code>
@@ -23752,6 +23836,62 @@ public final class TrezorMessageBitcoin {
           public Builder clearCoinjoinFlags() {
             bitField0_ = (bitField0_ & ~0x00010000);
             coinjoinFlags_ = 0;
+            onChanged();
+            return this;
+          }
+
+          private boolean unifiedSighash_ ;
+          /**
+           * <pre>
+           * see TxInput.unified_sighash. Firmware
+           * </pre>
+           *
+           * <code>optional bool unified_sighash = 21 [default = false];</code>
+           * @return Whether the unifiedSighash field is set.
+           */
+          @java.lang.Override
+          public boolean hasUnifiedSighash() {
+            return ((bitField0_ & 0x00020000) != 0);
+          }
+          /**
+           * <pre>
+           * see TxInput.unified_sighash. Firmware
+           * </pre>
+           *
+           * <code>optional bool unified_sighash = 21 [default = false];</code>
+           * @return The unifiedSighash.
+           */
+          @java.lang.Override
+          public boolean getUnifiedSighash() {
+            return unifiedSighash_;
+          }
+          /**
+           * <pre>
+           * see TxInput.unified_sighash. Firmware
+           * </pre>
+           *
+           * <code>optional bool unified_sighash = 21 [default = false];</code>
+           * @param value The unifiedSighash to set.
+           * @return This builder for chaining.
+           */
+          public Builder setUnifiedSighash(boolean value) {
+
+            unifiedSighash_ = value;
+            bitField0_ |= 0x00020000;
+            onChanged();
+            return this;
+          }
+          /**
+           * <pre>
+           * see TxInput.unified_sighash. Firmware
+           * </pre>
+           *
+           * <code>optional bool unified_sighash = 21 [default = false];</code>
+           * @return This builder for chaining.
+           */
+          public Builder clearUnifiedSighash() {
+            bitField0_ = (bitField0_ & ~0x00020000);
+            unifiedSighash_ = false;
             onChanged();
             return this;
           }
@@ -24562,7 +24702,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24571,7 +24711,7 @@ public final class TrezorMessageBitcoin {
         java.util.List<java.lang.Integer> getAddressNList();
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24580,7 +24720,7 @@ public final class TrezorMessageBitcoin {
         int getAddressNCount();
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24591,7 +24731,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * amount to spend in satoshis
+         * higher priority than "address"
          * </pre>
          *
          * <code>required uint64 amount = 3;</code>
@@ -24600,7 +24740,7 @@ public final class TrezorMessageBitcoin {
         boolean hasAmount();
         /**
          * <pre>
-         * amount to spend in satoshis
+         * higher priority than "address"
          * </pre>
          *
          * <code>required uint64 amount = 3;</code>
@@ -24629,7 +24769,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24638,7 +24778,7 @@ public final class TrezorMessageBitcoin {
         boolean hasMultisig();
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24647,7 +24787,7 @@ public final class TrezorMessageBitcoin {
         com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType getMultisig();
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24656,7 +24796,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+         * PAYTOMULTISIG
          * </pre>
          *
          * <code>optional bytes op_return_data = 6;</code>
@@ -24665,7 +24805,7 @@ public final class TrezorMessageBitcoin {
         boolean hasOpReturnData();
         /**
          * <pre>
-         * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+         * PAYTOMULTISIG
          * </pre>
          *
          * <code>optional bytes op_return_data = 6;</code>
@@ -24675,7 +24815,8 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+         * amount must be 0
+         * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
          * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
          * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
          * </pre>
@@ -24686,7 +24827,8 @@ public final class TrezorMessageBitcoin {
         boolean hasOrigHash();
         /**
          * <pre>
-         * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+         * amount must be 0
+         * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
          * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
          * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
          * </pre>
@@ -24698,7 +24840,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * index of the output in the original transaction (used when creating a replacement transaction)
+         * when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 11;</code>
@@ -24707,7 +24849,7 @@ public final class TrezorMessageBitcoin {
         boolean hasOrigIndex();
         /**
          * <pre>
-         * index of the output in the original transaction (used when creating a replacement transaction)
+         * when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 11;</code>
@@ -24717,7 +24859,7 @@ public final class TrezorMessageBitcoin {
 
         /**
          * <pre>
-         * index of the PaymentRequest containing this output
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 payment_req_index = 12;</code>
@@ -24726,7 +24868,7 @@ public final class TrezorMessageBitcoin {
         boolean hasPaymentReqIndex();
         /**
          * <pre>
-         * index of the PaymentRequest containing this output
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 payment_req_index = 12;</code>
@@ -24849,7 +24991,7 @@ public final class TrezorMessageBitcoin {
             emptyIntList();
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24862,7 +25004,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24873,7 +25015,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * BIP-32 path to derive the key from master node; has higher priority than "address"
+         * BIP-32 path to derive the key from master node; has
          * </pre>
          *
          * <code>repeated uint32 address_n = 2;</code>
@@ -24888,7 +25030,7 @@ public final class TrezorMessageBitcoin {
         private long amount_ = 0L;
         /**
          * <pre>
-         * amount to spend in satoshis
+         * higher priority than "address"
          * </pre>
          *
          * <code>required uint64 amount = 3;</code>
@@ -24900,7 +25042,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * amount to spend in satoshis
+         * higher priority than "address"
          * </pre>
          *
          * <code>required uint64 amount = 3;</code>
@@ -24941,7 +25083,7 @@ public final class TrezorMessageBitcoin {
         private com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType multisig_;
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24953,7 +25095,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24965,7 +25107,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * defines multisig address; script_type must be PAYTOMULTISIG
+         * defines multisig address; script_type must be
          * </pre>
          *
          * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -24979,7 +25121,7 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString opReturnData_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+         * PAYTOMULTISIG
          * </pre>
          *
          * <code>optional bytes op_return_data = 6;</code>
@@ -24991,7 +25133,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+         * PAYTOMULTISIG
          * </pre>
          *
          * <code>optional bytes op_return_data = 6;</code>
@@ -25006,7 +25148,8 @@ public final class TrezorMessageBitcoin {
         private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
         /**
          * <pre>
-         * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+         * amount must be 0
+         * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
          * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
          * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
          * </pre>
@@ -25020,7 +25163,8 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+         * amount must be 0
+         * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
          * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
          * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
          * </pre>
@@ -25037,7 +25181,7 @@ public final class TrezorMessageBitcoin {
         private int origIndex_ = 0;
         /**
          * <pre>
-         * index of the output in the original transaction (used when creating a replacement transaction)
+         * when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 11;</code>
@@ -25049,7 +25193,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * index of the output in the original transaction (used when creating a replacement transaction)
+         * when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 orig_index = 11;</code>
@@ -25064,7 +25208,7 @@ public final class TrezorMessageBitcoin {
         private int paymentReqIndex_ = 0;
         /**
          * <pre>
-         * index of the PaymentRequest containing this output
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 payment_req_index = 12;</code>
@@ -25076,7 +25220,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * index of the PaymentRequest containing this output
+         * (used when creating a replacement transaction)
          * </pre>
          *
          * <code>optional uint32 payment_req_index = 12;</code>
@@ -25799,7 +25943,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25812,7 +25956,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25823,7 +25967,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25835,7 +25979,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25854,7 +25998,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25871,7 +26015,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25889,7 +26033,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * BIP-32 path to derive the key from master node; has higher priority than "address"
+           * BIP-32 path to derive the key from master node; has
            * </pre>
            *
            * <code>repeated uint32 address_n = 2;</code>
@@ -25905,7 +26049,7 @@ public final class TrezorMessageBitcoin {
           private long amount_ ;
           /**
            * <pre>
-           * amount to spend in satoshis
+           * higher priority than "address"
            * </pre>
            *
            * <code>required uint64 amount = 3;</code>
@@ -25917,7 +26061,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * amount to spend in satoshis
+           * higher priority than "address"
            * </pre>
            *
            * <code>required uint64 amount = 3;</code>
@@ -25929,7 +26073,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * amount to spend in satoshis
+           * higher priority than "address"
            * </pre>
            *
            * <code>required uint64 amount = 3;</code>
@@ -25945,7 +26089,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * amount to spend in satoshis
+           * higher priority than "address"
            * </pre>
            *
            * <code>required uint64 amount = 3;</code>
@@ -26021,7 +26165,7 @@ public final class TrezorMessageBitcoin {
               com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType, com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptType.Builder, com.sparrowwallet.lark.trezor.generated.TrezorMessageBitcoin.MultisigRedeemScriptTypeOrBuilder> multisigBuilder_;
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26032,7 +26176,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26047,7 +26191,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26067,7 +26211,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26085,7 +26229,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26110,7 +26254,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26127,7 +26271,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26139,7 +26283,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26154,7 +26298,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines multisig address; script_type must be PAYTOMULTISIG
+           * defines multisig address; script_type must be
            * </pre>
            *
            * <code>optional .hw.trezor.messages.bitcoin.MultisigRedeemScriptType multisig = 5;</code>
@@ -26176,7 +26320,7 @@ public final class TrezorMessageBitcoin {
           private com.google.protobuf.ByteString opReturnData_ = com.google.protobuf.ByteString.EMPTY;
           /**
            * <pre>
-           * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+           * PAYTOMULTISIG
            * </pre>
            *
            * <code>optional bytes op_return_data = 6;</code>
@@ -26188,7 +26332,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+           * PAYTOMULTISIG
            * </pre>
            *
            * <code>optional bytes op_return_data = 6;</code>
@@ -26200,7 +26344,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+           * PAYTOMULTISIG
            * </pre>
            *
            * <code>optional bytes op_return_data = 6;</code>
@@ -26216,7 +26360,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * defines op_return data; script_type must be PAYTOOPRETURN, amount must be 0
+           * PAYTOMULTISIG
            * </pre>
            *
            * <code>optional bytes op_return_data = 6;</code>
@@ -26232,7 +26376,8 @@ public final class TrezorMessageBitcoin {
           private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
           /**
            * <pre>
-           * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+           * amount must be 0
+           * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
            * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
            * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
            * </pre>
@@ -26246,7 +26391,8 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+           * amount must be 0
+           * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
            * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
            * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
            * </pre>
@@ -26260,7 +26406,8 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+           * amount must be 0
+           * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
            * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
            * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
            * </pre>
@@ -26278,7 +26425,8 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * optional uint32 decred_script_version = 7;      // only for Decred  // deprecated -&gt; only 0 is supported
+           * amount must be 0
+           * optional uint32 decred_script_version = 7;   // only for Decred  // deprecated -&gt; only 0 is supported
            * optional bytes block_hash_bip115 = 8;        // BIP-115 support dropped
            * optional uint32 block_height_bip115 = 9;     // BIP-115 support dropped
            * </pre>
@@ -26296,7 +26444,7 @@ public final class TrezorMessageBitcoin {
           private int origIndex_ ;
           /**
            * <pre>
-           * index of the output in the original transaction (used when creating a replacement transaction)
+           * when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 11;</code>
@@ -26308,7 +26456,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the output in the original transaction (used when creating a replacement transaction)
+           * when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 11;</code>
@@ -26320,7 +26468,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the output in the original transaction (used when creating a replacement transaction)
+           * when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 11;</code>
@@ -26336,7 +26484,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the output in the original transaction (used when creating a replacement transaction)
+           * when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 orig_index = 11;</code>
@@ -26352,7 +26500,7 @@ public final class TrezorMessageBitcoin {
           private int paymentReqIndex_ ;
           /**
            * <pre>
-           * index of the PaymentRequest containing this output
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 payment_req_index = 12;</code>
@@ -26364,7 +26512,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the PaymentRequest containing this output
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 payment_req_index = 12;</code>
@@ -26376,7 +26524,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the PaymentRequest containing this output
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 payment_req_index = 12;</code>
@@ -26392,7 +26540,7 @@ public final class TrezorMessageBitcoin {
           }
           /**
            * <pre>
-           * index of the PaymentRequest containing this output
+           * (used when creating a replacement transaction)
            * </pre>
            *
            * <code>optional uint32 payment_req_index = 12;</code>
@@ -26741,12 +26889,12 @@ public final class TrezorMessageBitcoin {
       private boolean overwintered_ = false;
       /**
        * <pre>
-       * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+       * Zcash only; deprecated in 2.3.2, the field is not
        * </pre>
        *
        * <code>optional bool overwintered = 11 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=304
+       *     See messages-bitcoin.proto;l=315
        * @return Whether the overwintered field is set.
        */
       @java.lang.Override
@@ -26755,12 +26903,12 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+       * Zcash only; deprecated in 2.3.2, the field is not
        * </pre>
        *
        * <code>optional bool overwintered = 11 [deprecated = true];</code>
        * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-       *     See messages-bitcoin.proto;l=304
+       *     See messages-bitcoin.proto;l=315
        * @return The overwintered.
        */
       @java.lang.Override
@@ -26772,7 +26920,7 @@ public final class TrezorMessageBitcoin {
       private int versionGroupId_ = 0;
       /**
        * <pre>
-       * only for Zcash, nVersionGroupId
+       * needed, it can be derived from `version`
        * </pre>
        *
        * <code>optional uint32 version_group_id = 12;</code>
@@ -26784,7 +26932,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * only for Zcash, nVersionGroupId
+       * needed, it can be derived from `version`
        * </pre>
        *
        * <code>optional uint32 version_group_id = 12;</code>
@@ -28738,12 +28886,12 @@ public final class TrezorMessageBitcoin {
         private boolean overwintered_ ;
         /**
          * <pre>
-         * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+         * Zcash only; deprecated in 2.3.2, the field is not
          * </pre>
          *
          * <code>optional bool overwintered = 11 [deprecated = true];</code>
          * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-         *     See messages-bitcoin.proto;l=304
+         *     See messages-bitcoin.proto;l=315
          * @return Whether the overwintered field is set.
          */
         @java.lang.Override
@@ -28752,12 +28900,12 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+         * Zcash only; deprecated in 2.3.2, the field is not
          * </pre>
          *
          * <code>optional bool overwintered = 11 [deprecated = true];</code>
          * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-         *     See messages-bitcoin.proto;l=304
+         *     See messages-bitcoin.proto;l=315
          * @return The overwintered.
          */
         @java.lang.Override
@@ -28766,12 +28914,12 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+         * Zcash only; deprecated in 2.3.2, the field is not
          * </pre>
          *
          * <code>optional bool overwintered = 11 [deprecated = true];</code>
          * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-         *     See messages-bitcoin.proto;l=304
+         *     See messages-bitcoin.proto;l=315
          * @param value The overwintered to set.
          * @return This builder for chaining.
          */
@@ -28784,12 +28932,12 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * Zcash only; deprecated in 2.3.2, the field is not needed, it can be derived from `version`
+         * Zcash only; deprecated in 2.3.2, the field is not
          * </pre>
          *
          * <code>optional bool overwintered = 11 [deprecated = true];</code>
          * @deprecated hw.trezor.messages.bitcoin.TxAck.TransactionType.overwintered is deprecated.
-         *     See messages-bitcoin.proto;l=304
+         *     See messages-bitcoin.proto;l=315
          * @return This builder for chaining.
          */
         @java.lang.Deprecated public Builder clearOverwintered() {
@@ -28802,7 +28950,7 @@ public final class TrezorMessageBitcoin {
         private int versionGroupId_ ;
         /**
          * <pre>
-         * only for Zcash, nVersionGroupId
+         * needed, it can be derived from `version`
          * </pre>
          *
          * <code>optional uint32 version_group_id = 12;</code>
@@ -28814,7 +28962,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * only for Zcash, nVersionGroupId
+         * needed, it can be derived from `version`
          * </pre>
          *
          * <code>optional uint32 version_group_id = 12;</code>
@@ -28826,7 +28974,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * only for Zcash, nVersionGroupId
+         * needed, it can be derived from `version`
          * </pre>
          *
          * <code>optional uint32 version_group_id = 12;</code>
@@ -28842,7 +28990,7 @@ public final class TrezorMessageBitcoin {
         }
         /**
          * <pre>
-         * only for Zcash, nVersionGroupId
+         * needed, it can be derived from `version`
          * </pre>
          *
          * <code>optional uint32 version_group_id = 12;</code>
@@ -29809,7 +29957,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this input was
      * </pre>
      *
      * <code>optional bytes orig_hash = 16;</code>
@@ -29818,7 +29966,7 @@ public final class TrezorMessageBitcoin {
     boolean hasOrigHash();
     /**
      * <pre>
-     * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this input was
      * </pre>
      *
      * <code>optional bytes orig_hash = 16;</code>
@@ -29828,7 +29976,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * index of the input in the original transaction (used when creating a replacement transaction)
+     * spent (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 17;</code>
@@ -29837,7 +29985,7 @@ public final class TrezorMessageBitcoin {
     boolean hasOrigIndex();
     /**
      * <pre>
-     * index of the input in the original transaction (used when creating a replacement transaction)
+     * spent (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 17;</code>
@@ -29847,7 +29995,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * if not None this holds the type of stake spend: revocation or stake generation
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -29856,7 +30004,7 @@ public final class TrezorMessageBitcoin {
     boolean hasDecredStakingSpend();
     /**
      * <pre>
-     * if not None this holds the type of stake spend: revocation or stake generation
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -29901,6 +30049,25 @@ public final class TrezorMessageBitcoin {
      * @return The coinjoinFlags.
      */
     int getCoinjoinFlags();
+
+    /**
+     * <pre>
+     * sign this input with the unified opt-in signature
+     * </pre>
+     *
+     * <code>optional bool unified_sighash = 21 [default = false];</code>
+     * @return Whether the unifiedSighash field is set.
+     */
+    boolean hasUnifiedSighash();
+    /**
+     * <pre>
+     * sign this input with the unified opt-in signature
+     * </pre>
+     *
+     * <code>optional bool unified_sighash = 21 [default = false];</code>
+     * @return The unifiedSighash.
+     */
+    boolean getUnifiedSighash();
   }
   /**
    * <pre>
@@ -30311,7 +30478,7 @@ public final class TrezorMessageBitcoin {
     private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this input was
      * </pre>
      *
      * <code>optional bytes orig_hash = 16;</code>
@@ -30323,7 +30490,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this input was
      * </pre>
      *
      * <code>optional bytes orig_hash = 16;</code>
@@ -30338,7 +30505,7 @@ public final class TrezorMessageBitcoin {
     private int origIndex_ = 0;
     /**
      * <pre>
-     * index of the input in the original transaction (used when creating a replacement transaction)
+     * spent (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 17;</code>
@@ -30350,7 +30517,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * index of the input in the original transaction (used when creating a replacement transaction)
+     * spent (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 17;</code>
@@ -30365,7 +30532,7 @@ public final class TrezorMessageBitcoin {
     private int decredStakingSpend_ = 0;
     /**
      * <pre>
-     * if not None this holds the type of stake spend: revocation or stake generation
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -30376,7 +30543,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * if not None this holds the type of stake spend: revocation or stake generation
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -30439,6 +30606,33 @@ public final class TrezorMessageBitcoin {
     @java.lang.Override
     public int getCoinjoinFlags() {
       return coinjoinFlags_;
+    }
+
+    public static final int UNIFIED_SIGHASH_FIELD_NUMBER = 21;
+    private boolean unifiedSighash_ = false;
+    /**
+     * <pre>
+     * sign this input with the unified opt-in signature
+     * </pre>
+     *
+     * <code>optional bool unified_sighash = 21 [default = false];</code>
+     * @return Whether the unifiedSighash field is set.
+     */
+    @java.lang.Override
+    public boolean hasUnifiedSighash() {
+      return ((bitField0_ & 0x00010000) != 0);
+    }
+    /**
+     * <pre>
+     * sign this input with the unified opt-in signature
+     * </pre>
+     *
+     * <code>optional bool unified_sighash = 21 [default = false];</code>
+     * @return The unifiedSighash.
+     */
+    @java.lang.Override
+    public boolean getUnifiedSighash() {
+      return unifiedSighash_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -30524,6 +30718,9 @@ public final class TrezorMessageBitcoin {
       if (((bitField0_ & 0x00008000) != 0)) {
         output.writeUInt32(20, coinjoinFlags_);
       }
+      if (((bitField0_ & 0x00010000) != 0)) {
+        output.writeBool(21, unifiedSighash_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -30605,6 +30802,10 @@ public final class TrezorMessageBitcoin {
       if (((bitField0_ & 0x00008000) != 0)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(20, coinjoinFlags_);
+      }
+      if (((bitField0_ & 0x00010000) != 0)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(21, unifiedSighash_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -30701,6 +30902,11 @@ public final class TrezorMessageBitcoin {
         if (getCoinjoinFlags()
             != other.getCoinjoinFlags()) return false;
       }
+      if (hasUnifiedSighash() != other.hasUnifiedSighash()) return false;
+      if (hasUnifiedSighash()) {
+        if (getUnifiedSighash()
+            != other.getUnifiedSighash()) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -30780,6 +30986,11 @@ public final class TrezorMessageBitcoin {
       if (hasCoinjoinFlags()) {
         hash = (37 * hash) + COINJOIN_FLAGS_FIELD_NUMBER;
         hash = (53 * hash) + getCoinjoinFlags();
+      }
+      if (hasUnifiedSighash()) {
+        hash = (37 * hash) + UNIFIED_SIGHASH_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getUnifiedSighash());
       }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
@@ -30947,6 +31158,7 @@ public final class TrezorMessageBitcoin {
         decredStakingSpend_ = 0;
         scriptPubkey_ = com.google.protobuf.ByteString.EMPTY;
         coinjoinFlags_ = 0;
+        unifiedSighash_ = false;
         return this;
       }
 
@@ -31051,6 +31263,10 @@ public final class TrezorMessageBitcoin {
           result.coinjoinFlags_ = coinjoinFlags_;
           to_bitField0_ |= 0x00008000;
         }
+        if (((from_bitField0_ & 0x00020000) != 0)) {
+          result.unifiedSighash_ = unifiedSighash_;
+          to_bitField0_ |= 0x00010000;
+        }
         result.bitField0_ |= to_bitField0_;
       }
 
@@ -31124,6 +31340,9 @@ public final class TrezorMessageBitcoin {
         }
         if (other.hasCoinjoinFlags()) {
           setCoinjoinFlags(other.getCoinjoinFlags());
+        }
+        if (other.hasUnifiedSighash()) {
+          setUnifiedSighash(other.getUnifiedSighash());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -31277,6 +31496,11 @@ public final class TrezorMessageBitcoin {
                 bitField0_ |= 0x00010000;
                 break;
               } // case 160
+              case 168: {
+                unifiedSighash_ = input.readBool();
+                bitField0_ |= 0x00020000;
+                break;
+              } // case 168
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -32128,7 +32352,7 @@ public final class TrezorMessageBitcoin {
       private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this input was
        * </pre>
        *
        * <code>optional bytes orig_hash = 16;</code>
@@ -32140,7 +32364,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this input was
        * </pre>
        *
        * <code>optional bytes orig_hash = 16;</code>
@@ -32152,7 +32376,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this input was
        * </pre>
        *
        * <code>optional bytes orig_hash = 16;</code>
@@ -32168,7 +32392,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this input was spent (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this input was
        * </pre>
        *
        * <code>optional bytes orig_hash = 16;</code>
@@ -32184,7 +32408,7 @@ public final class TrezorMessageBitcoin {
       private int origIndex_ ;
       /**
        * <pre>
-       * index of the input in the original transaction (used when creating a replacement transaction)
+       * spent (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 17;</code>
@@ -32196,7 +32420,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the input in the original transaction (used when creating a replacement transaction)
+       * spent (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 17;</code>
@@ -32208,7 +32432,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the input in the original transaction (used when creating a replacement transaction)
+       * spent (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 17;</code>
@@ -32224,7 +32448,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the input in the original transaction (used when creating a replacement transaction)
+       * spent (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 17;</code>
@@ -32240,7 +32464,7 @@ public final class TrezorMessageBitcoin {
       private int decredStakingSpend_ = 0;
       /**
        * <pre>
-       * if not None this holds the type of stake spend: revocation or stake generation
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -32251,7 +32475,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * if not None this holds the type of stake spend: revocation or stake generation
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -32264,7 +32488,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * if not None this holds the type of stake spend: revocation or stake generation
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -32282,7 +32506,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * if not None this holds the type of stake spend: revocation or stake generation
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional .hw.trezor.messages.bitcoin.DecredStakingSpendType decred_staking_spend = 18;</code>
@@ -32403,6 +32627,62 @@ public final class TrezorMessageBitcoin {
       public Builder clearCoinjoinFlags() {
         bitField0_ = (bitField0_ & ~0x00010000);
         coinjoinFlags_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private boolean unifiedSighash_ ;
+      /**
+       * <pre>
+       * sign this input with the unified opt-in signature
+       * </pre>
+       *
+       * <code>optional bool unified_sighash = 21 [default = false];</code>
+       * @return Whether the unifiedSighash field is set.
+       */
+      @java.lang.Override
+      public boolean hasUnifiedSighash() {
+        return ((bitField0_ & 0x00020000) != 0);
+      }
+      /**
+       * <pre>
+       * sign this input with the unified opt-in signature
+       * </pre>
+       *
+       * <code>optional bool unified_sighash = 21 [default = false];</code>
+       * @return The unifiedSighash.
+       */
+      @java.lang.Override
+      public boolean getUnifiedSighash() {
+        return unifiedSighash_;
+      }
+      /**
+       * <pre>
+       * sign this input with the unified opt-in signature
+       * </pre>
+       *
+       * <code>optional bool unified_sighash = 21 [default = false];</code>
+       * @param value The unifiedSighash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUnifiedSighash(boolean value) {
+
+        unifiedSighash_ = value;
+        bitField0_ |= 0x00020000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * sign this input with the unified opt-in signature
+       * </pre>
+       *
+       * <code>optional bool unified_sighash = 21 [default = false];</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUnifiedSighash() {
+        bitField0_ = (bitField0_ & ~0x00020000);
+        unifiedSighash_ = false;
         onChanged();
         return this;
       }
@@ -32606,7 +32886,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this output was
      * </pre>
      *
      * <code>optional bytes orig_hash = 10;</code>
@@ -32615,7 +32895,7 @@ public final class TrezorMessageBitcoin {
     boolean hasOrigHash();
     /**
      * <pre>
-     * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this output was
      * </pre>
      *
      * <code>optional bytes orig_hash = 10;</code>
@@ -32625,7 +32905,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * index of the output in the original transaction (used when creating a replacement transaction)
+     * present (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 11;</code>
@@ -32634,7 +32914,7 @@ public final class TrezorMessageBitcoin {
     boolean hasOrigIndex();
     /**
      * <pre>
-     * index of the output in the original transaction (used when creating a replacement transaction)
+     * present (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 11;</code>
@@ -32644,7 +32924,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * index of the PaymentRequest containing this output
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 payment_req_index = 12;</code>
@@ -32653,7 +32933,7 @@ public final class TrezorMessageBitcoin {
     boolean hasPaymentReqIndex();
     /**
      * <pre>
-     * index of the PaymentRequest containing this output
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 payment_req_index = 12;</code>
@@ -32933,7 +33213,7 @@ public final class TrezorMessageBitcoin {
     private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
-     * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this output was
      * </pre>
      *
      * <code>optional bytes orig_hash = 10;</code>
@@ -32945,7 +33225,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+     * tx_hash of the original transaction where this output was
      * </pre>
      *
      * <code>optional bytes orig_hash = 10;</code>
@@ -32960,7 +33240,7 @@ public final class TrezorMessageBitcoin {
     private int origIndex_ = 0;
     /**
      * <pre>
-     * index of the output in the original transaction (used when creating a replacement transaction)
+     * present (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 11;</code>
@@ -32972,7 +33252,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * index of the output in the original transaction (used when creating a replacement transaction)
+     * present (used when creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 orig_index = 11;</code>
@@ -32987,7 +33267,7 @@ public final class TrezorMessageBitcoin {
     private int paymentReqIndex_ = 0;
     /**
      * <pre>
-     * index of the PaymentRequest containing this output
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 payment_req_index = 12;</code>
@@ -32999,7 +33279,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * index of the PaymentRequest containing this output
+     * creating a replacement transaction)
      * </pre>
      *
      * <code>optional uint32 payment_req_index = 12;</code>
@@ -34155,7 +34435,7 @@ public final class TrezorMessageBitcoin {
       private com.google.protobuf.ByteString origHash_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <pre>
-       * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this output was
        * </pre>
        *
        * <code>optional bytes orig_hash = 10;</code>
@@ -34167,7 +34447,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this output was
        * </pre>
        *
        * <code>optional bytes orig_hash = 10;</code>
@@ -34179,7 +34459,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this output was
        * </pre>
        *
        * <code>optional bytes orig_hash = 10;</code>
@@ -34195,7 +34475,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * tx_hash of the original transaction where this output was present (used when creating a replacement transaction)
+       * tx_hash of the original transaction where this output was
        * </pre>
        *
        * <code>optional bytes orig_hash = 10;</code>
@@ -34211,7 +34491,7 @@ public final class TrezorMessageBitcoin {
       private int origIndex_ ;
       /**
        * <pre>
-       * index of the output in the original transaction (used when creating a replacement transaction)
+       * present (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 11;</code>
@@ -34223,7 +34503,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the output in the original transaction (used when creating a replacement transaction)
+       * present (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 11;</code>
@@ -34235,7 +34515,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the output in the original transaction (used when creating a replacement transaction)
+       * present (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 11;</code>
@@ -34251,7 +34531,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the output in the original transaction (used when creating a replacement transaction)
+       * present (used when creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 orig_index = 11;</code>
@@ -34267,7 +34547,7 @@ public final class TrezorMessageBitcoin {
       private int paymentReqIndex_ ;
       /**
        * <pre>
-       * index of the PaymentRequest containing this output
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 payment_req_index = 12;</code>
@@ -34279,7 +34559,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the PaymentRequest containing this output
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 payment_req_index = 12;</code>
@@ -34291,7 +34571,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the PaymentRequest containing this output
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 payment_req_index = 12;</code>
@@ -34307,7 +34587,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * index of the PaymentRequest containing this output
+       * creating a replacement transaction)
        * </pre>
        *
        * <code>optional uint32 payment_req_index = 12;</code>
@@ -46517,7 +46797,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46526,7 +46806,7 @@ public final class TrezorMessageBitcoin {
     boolean hasCoordinator();
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46535,7 +46815,7 @@ public final class TrezorMessageBitcoin {
     java.lang.String getCoordinator();
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46546,7 +46826,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * maximum number of rounds that Trezor is authorized to take part in
+     * data (max. 36 ASCII characters)
      * </pre>
      *
      * <code>required uint64 max_rounds = 2;</code>
@@ -46555,7 +46835,7 @@ public final class TrezorMessageBitcoin {
     boolean hasMaxRounds();
     /**
      * <pre>
-     * maximum number of rounds that Trezor is authorized to take part in
+     * data (max. 36 ASCII characters)
      * </pre>
      *
      * <code>required uint64 max_rounds = 2;</code>
@@ -46603,7 +46883,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46612,7 +46892,7 @@ public final class TrezorMessageBitcoin {
     java.util.List<java.lang.Integer> getAddressNList();
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46621,7 +46901,7 @@ public final class TrezorMessageBitcoin {
     int getAddressNCount();
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46632,7 +46912,7 @@ public final class TrezorMessageBitcoin {
 
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -46641,7 +46921,7 @@ public final class TrezorMessageBitcoin {
     boolean hasCoinName();
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -46650,7 +46930,7 @@ public final class TrezorMessageBitcoin {
     java.lang.String getCoinName();
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -46753,7 +47033,7 @@ public final class TrezorMessageBitcoin {
     private volatile java.lang.Object coordinator_ = "";
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46765,7 +47045,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46788,7 +47068,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+     * coordinator identifier to approve as a prefix in commitment
      * </pre>
      *
      * <code>required string coordinator = 1;</code>
@@ -46813,7 +47093,7 @@ public final class TrezorMessageBitcoin {
     private long maxRounds_ = 0L;
     /**
      * <pre>
-     * maximum number of rounds that Trezor is authorized to take part in
+     * data (max. 36 ASCII characters)
      * </pre>
      *
      * <code>required uint64 max_rounds = 2;</code>
@@ -46825,7 +47105,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * maximum number of rounds that Trezor is authorized to take part in
+     * data (max. 36 ASCII characters)
      * </pre>
      *
      * <code>required uint64 max_rounds = 2;</code>
@@ -46896,7 +47176,7 @@ public final class TrezorMessageBitcoin {
         emptyIntList();
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46909,7 +47189,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46920,7 +47200,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+     * prefix of the BIP-32 path leading to the account (m /
      * </pre>
      *
      * <code>repeated uint32 address_n = 5;</code>
@@ -46936,7 +47216,7 @@ public final class TrezorMessageBitcoin {
     private volatile java.lang.Object coinName_ = "Bitcoin";
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -46948,7 +47228,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -46971,7 +47251,7 @@ public final class TrezorMessageBitcoin {
     }
     /**
      * <pre>
-     * coin to use
+     * purpose' / coin_type' / account')
      * </pre>
      *
      * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -47623,7 +47903,7 @@ public final class TrezorMessageBitcoin {
       private java.lang.Object coordinator_ = "";
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47634,7 +47914,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47656,7 +47936,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47677,7 +47957,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47694,7 +47974,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47708,7 +47988,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coordinator identifier to approve as a prefix in commitment data (max. 36 ASCII characters)
+       * coordinator identifier to approve as a prefix in commitment
        * </pre>
        *
        * <code>required string coordinator = 1;</code>
@@ -47727,7 +48007,7 @@ public final class TrezorMessageBitcoin {
       private long maxRounds_ ;
       /**
        * <pre>
-       * maximum number of rounds that Trezor is authorized to take part in
+       * data (max. 36 ASCII characters)
        * </pre>
        *
        * <code>required uint64 max_rounds = 2;</code>
@@ -47739,7 +48019,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * maximum number of rounds that Trezor is authorized to take part in
+       * data (max. 36 ASCII characters)
        * </pre>
        *
        * <code>required uint64 max_rounds = 2;</code>
@@ -47751,7 +48031,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * maximum number of rounds that Trezor is authorized to take part in
+       * data (max. 36 ASCII characters)
        * </pre>
        *
        * <code>required uint64 max_rounds = 2;</code>
@@ -47767,7 +48047,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * maximum number of rounds that Trezor is authorized to take part in
+       * data (max. 36 ASCII characters)
        * </pre>
        *
        * <code>required uint64 max_rounds = 2;</code>
@@ -47901,7 +48181,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47914,7 +48194,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47925,7 +48205,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47937,7 +48217,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47956,7 +48236,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47973,7 +48253,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -47991,7 +48271,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * prefix of the BIP-32 path leading to the account (m / purpose' / coin_type' / account')
+       * prefix of the BIP-32 path leading to the account (m /
        * </pre>
        *
        * <code>repeated uint32 address_n = 5;</code>
@@ -48007,7 +48287,7 @@ public final class TrezorMessageBitcoin {
       private java.lang.Object coinName_ = "Bitcoin";
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48018,7 +48298,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48040,7 +48320,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48061,7 +48341,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48078,7 +48358,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48092,7 +48372,7 @@ public final class TrezorMessageBitcoin {
       }
       /**
        * <pre>
-       * coin to use
+       * purpose' / coin_type' / account')
        * </pre>
        *
        * <code>optional string coin_name = 6 [default = "Bitcoin"];</code>
@@ -48558,9 +48838,9 @@ public final class TrezorMessageBitcoin {
       "\001(\014\"\212\001\n\013RequestType\022\013\n\007TXINPUT\020\000\022\014\n\010TXOU" +
       "TPUT\020\001\022\n\n\006TXMETA\020\002\022\016\n\nTXFINISHED\020\003\022\017\n\013TX" +
       "EXTRADATA\020\004\022\017\n\013TXORIGINPUT\020\005\022\020\n\014TXORIGOU" +
-      "TPUT\020\006\022\020\n\014TXPAYMENTREQ\020\007\"\361\013\n\005TxAck\022=\n\002tx" +
+      "TPUT\020\006\022\020\n\014TXPAYMENTREQ\020\007\"\221\014\n\005TxAck\022=\n\002tx" +
       "\030\001 \001(\01321.hw.trezor.messages.bitcoin.TxAc" +
-      "k.TransactionType\032\244\013\n\017TransactionType\022\017\n" +
+      "k.TransactionType\032\304\013\n\017TransactionType\022\017\n" +
       "\007version\030\001 \001(\r\022M\n\006inputs\030\002 \003(\0132=.hw.trez" +
       "or.messages.bitcoin.TxAck.TransactionTyp" +
       "e.TxInputType\022V\n\013bin_outputs\030\003 \003(\0132A.hw." +
@@ -48572,7 +48852,7 @@ public final class TrezorMessageBitcoin {
       "(\r\022\022\n\nextra_data\030\010 \001(\014\022\026\n\016extra_data_len" +
       "\030\t \001(\r\022\016\n\006expiry\030\n \001(\r\022\030\n\014overwintered\030\013" +
       " \001(\010B\002\030\001\022\030\n\020version_group_id\030\014 \001(\r\022\021\n\tti" +
-      "mestamp\030\r \001(\r\022\021\n\tbranch_id\030\016 \001(\r\032\244\004\n\013TxI" +
+      "mestamp\030\r \001(\r\022\021\n\tbranch_id\030\016 \001(\r\032\304\004\n\013TxI" +
       "nputType\022\021\n\taddress_n\030\001 \003(\r\022\021\n\tprev_hash" +
       "\030\002 \002(\014\022\022\n\nprev_index\030\003 \002(\r\022\022\n\nscript_sig" +
       "\030\004 \001(\014\022\034\n\010sequence\030\005 \001(\r:\n4294967295\022N\n\013" +
@@ -48586,106 +48866,108 @@ public final class TrezorMessageBitcoin {
       "index\030\021 \001(\r\022P\n\024decred_staking_spend\030\022 \001(" +
       "\01622.hw.trezor.messages.bitcoin.DecredSta" +
       "kingSpendType\022\025\n\rscript_pubkey\030\023 \001(\014\022\031\n\016" +
-      "coinjoin_flags\030\024 \001(\r:\0010\032W\n\017TxOutputBinTy" +
-      "pe\022\016\n\006amount\030\001 \002(\004\022\025\n\rscript_pubkey\030\002 \002(" +
-      "\014\022\035\n\025decred_script_version\030\003 \001(\r\032\265\002\n\014TxO" +
-      "utputType\022\017\n\007address\030\001 \001(\t\022\021\n\taddress_n\030" +
-      "\002 \003(\r\022\016\n\006amount\030\003 \002(\004\022O\n\013script_type\030\004 \001" +
-      "(\0162,.hw.trezor.messages.bitcoin.OutputSc" +
-      "riptType:\014PAYTOADDRESS\022F\n\010multisig\030\005 \001(\013" +
-      "24.hw.trezor.messages.bitcoin.MultisigRe" +
-      "deemScriptType\022\026\n\016op_return_data\030\006 \001(\014\022\021" +
-      "\n\torig_hash\030\n \001(\014\022\022\n\norig_index\030\013 \001(\r\022\031\n" +
-      "\021payment_req_index\030\014 \001(\r:\002\030\001\"\262\004\n\007TxInput" +
-      "\022\021\n\taddress_n\030\001 \003(\r\022\021\n\tprev_hash\030\002 \002(\014\022\022" +
-      "\n\nprev_index\030\003 \002(\r\022\022\n\nscript_sig\030\004 \001(\014\022\034" +
-      "\n\010sequence\030\005 \001(\r:\n4294967295\022N\n\013script_t" +
-      "ype\030\006 \001(\0162+.hw.trezor.messages.bitcoin.I" +
-      "nputScriptType:\014SPENDADDRESS\022F\n\010multisig" +
-      "\030\007 \001(\01324.hw.trezor.messages.bitcoin.Mult" +
-      "isigRedeemScriptType\022\016\n\006amount\030\010 \002(\004\022\023\n\013" +
-      "decred_tree\030\t \001(\r\022\017\n\007witness\030\r \001(\014\022\027\n\017ow" +
-      "nership_proof\030\016 \001(\014\022\027\n\017commitment_data\030\017" +
-      " \001(\014\022\021\n\torig_hash\030\020 \001(\014\022\022\n\norig_index\030\021 " +
-      "\001(\r\022P\n\024decred_staking_spend\030\022 \001(\01622.hw.t" +
-      "rezor.messages.bitcoin.DecredStakingSpen" +
-      "dType\022\025\n\rscript_pubkey\030\023 \001(\014\022\031\n\016coinjoin" +
-      "_flags\030\024 \001(\r:\0010J\004\010\n\020\013J\004\010\013\020\014J\004\010\014\020\r\"\303\002\n\010Tx" +
-      "Output\022\017\n\007address\030\001 \001(\t\022\021\n\taddress_n\030\002 \003" +
-      "(\r\022\016\n\006amount\030\003 \002(\004\022O\n\013script_type\030\004 \001(\0162" +
-      ",.hw.trezor.messages.bitcoin.OutputScrip" +
-      "tType:\014PAYTOADDRESS\022F\n\010multisig\030\005 \001(\01324." +
-      "hw.trezor.messages.bitcoin.MultisigRedee" +
-      "mScriptType\022\026\n\016op_return_data\030\006 \001(\014\022\021\n\to" +
-      "rig_hash\030\n \001(\014\022\022\n\norig_index\030\013 \001(\r\022\031\n\021pa" +
-      "yment_req_index\030\014 \001(\rJ\004\010\007\020\010J\004\010\010\020\tJ\004\010\t\020\n\"" +
-      "\342\001\n\006PrevTx\022\017\n\007version\030\001 \002(\r\022\021\n\tlock_time" +
-      "\030\004 \002(\r\022\024\n\014inputs_count\030\006 \002(\r\022\025\n\routputs_" +
-      "count\030\007 \002(\r\022\031\n\016extra_data_len\030\t \001(\r:\0010\022\016" +
-      "\n\006expiry\030\n \001(\r\022\030\n\020version_group_id\030\014 \001(\r" +
-      "\022\021\n\ttimestamp\030\r \001(\r\022\021\n\tbranch_id\030\016 \001(\rJ\004" +
-      "\010\002\020\003J\004\010\003\020\004J\004\010\005\020\006J\004\010\010\020\tJ\004\010\013\020\014\"\301\001\n\tPrevInp" +
-      "ut\022\021\n\tprev_hash\030\002 \002(\014\022\022\n\nprev_index\030\003 \002(" +
-      "\r\022\022\n\nscript_sig\030\004 \002(\014\022\020\n\010sequence\030\005 \002(\r\022" +
-      "\023\n\013decred_tree\030\t \001(\rJ\004\010\001\020\002J\004\010\006\020\007J\004\010\007\020\010J\004" +
-      "\010\010\020\tJ\004\010\n\020\013J\004\010\013\020\014J\004\010\014\020\rJ\004\010\r\020\016J\004\010\016\020\017J\004\010\017\020\020" +
-      "J\004\010\020\020\021J\004\010\021\020\022J\004\010\022\020\023J\004\010\023\020\024\"R\n\nPrevOutput\022\016" +
-      "\n\006amount\030\001 \002(\004\022\025\n\rscript_pubkey\030\002 \002(\014\022\035\n" +
-      "\025decred_script_version\030\003 \001(\r\"\241\001\n\nTxAckIn" +
-      "put\022D\n\002tx\030\001 \002(\01328.hw.trezor.messages.bit" +
-      "coin.TxAckInput.TxAckInputWrapper\032G\n\021TxA" +
-      "ckInputWrapper\0222\n\005input\030\002 \002(\0132#.hw.trezo" +
-      "r.messages.bitcoin.TxInput:\004\220\262\031\026\"\247\001\n\013TxA" +
-      "ckOutput\022F\n\002tx\030\001 \002(\0132:.hw.trezor.message" +
-      "s.bitcoin.TxAckOutput.TxAckOutputWrapper" +
-      "\032J\n\022TxAckOutputWrapper\0224\n\006output\030\005 \002(\0132$" +
-      ".hw.trezor.messages.bitcoin.TxOutput:\004\220\262" +
-      "\031\026\"E\n\rTxAckPrevMeta\022.\n\002tx\030\001 \002(\0132\".hw.tre" +
-      "zor.messages.bitcoin.PrevTx:\004\220\262\031\026\"\263\001\n\016Tx" +
-      "AckPrevInput\022L\n\002tx\030\001 \002(\0132@.hw.trezor.mes" +
-      "sages.bitcoin.TxAckPrevInput.TxAckPrevIn" +
-      "putWrapper\032M\n\025TxAckPrevInputWrapper\0224\n\005i" +
-      "nput\030\002 \002(\0132%.hw.trezor.messages.bitcoin." +
-      "PrevInput:\004\220\262\031\026\"\271\001\n\017TxAckPrevOutput\022N\n\002t" +
-      "x\030\001 \002(\0132B.hw.trezor.messages.bitcoin.TxA" +
-      "ckPrevOutput.TxAckPrevOutputWrapper\032P\n\026T" +
-      "xAckPrevOutputWrapper\0226\n\006output\030\003 \002(\0132&." +
-      "hw.trezor.messages.bitcoin.PrevOutput:\004\220" +
-      "\262\031\026\"\247\001\n\022TxAckPrevExtraData\022T\n\002tx\030\001 \002(\0132H" +
-      ".hw.trezor.messages.bitcoin.TxAckPrevExt" +
-      "raData.TxAckPrevExtraDataWrapper\0325\n\031TxAc" +
-      "kPrevExtraDataWrapper\022\030\n\020extra_data_chun" +
-      "k\030\010 \002(\014:\004\220\262\031\026\"\256\002\n\021GetOwnershipProof\022\021\n\ta" +
-      "ddress_n\030\001 \003(\r\022\032\n\tcoin_name\030\002 \001(\t:\007Bitco" +
-      "in\022N\n\013script_type\030\003 \001(\0162+.hw.trezor.mess" +
-      "ages.bitcoin.InputScriptType:\014SPENDWITNE" +
-      "SS\022F\n\010multisig\030\004 \001(\01324.hw.trezor.message" +
-      "s.bitcoin.MultisigRedeemScriptType\022 \n\021us" +
-      "er_confirmation\030\005 \001(\010:\005false\022\025\n\rownershi" +
-      "p_ids\030\006 \003(\014\022\031\n\017commitment_data\030\007 \001(\014:\000\"<" +
-      "\n\016OwnershipProof\022\027\n\017ownership_proof\030\001 \002(" +
-      "\014\022\021\n\tsignature\030\002 \002(\014\"\277\002\n\021AuthorizeCoinJo" +
-      "in\022\023\n\013coordinator\030\001 \002(\t\022\022\n\nmax_rounds\030\002 " +
-      "\002(\004\022 \n\030max_coordinator_fee_rate\030\003 \002(\r\022\032\n" +
-      "\022max_fee_per_kvbyte\030\004 \002(\r\022\021\n\taddress_n\030\005" +
-      " \003(\r\022\032\n\tcoin_name\030\006 \001(\t:\007Bitcoin\022N\n\013scri" +
-      "pt_type\030\007 \001(\0162+.hw.trezor.messages.bitco" +
-      "in.InputScriptType:\014SPENDADDRESS\022D\n\013amou" +
-      "nt_unit\030\010 \001(\0162&.hw.trezor.messages.bitco" +
-      "in.AmountUnit:\007BITCOIN*~\n\017InputScriptTyp" +
-      "e\022\020\n\014SPENDADDRESS\020\000\022\021\n\rSPENDMULTISIG\020\001\022\014" +
-      "\n\010EXTERNAL\020\002\022\020\n\014SPENDWITNESS\020\003\022\024\n\020SPENDP" +
-      "2SHWITNESS\020\004\022\020\n\014SPENDTAPROOT\020\005*\231\001\n\020Outpu" +
-      "tScriptType\022\020\n\014PAYTOADDRESS\020\000\022\023\n\017PAYTOSC" +
-      "RIPTHASH\020\001\022\021\n\rPAYTOMULTISIG\020\002\022\021\n\rPAYTOOP" +
-      "RETURN\020\003\022\020\n\014PAYTOWITNESS\020\004\022\024\n\020PAYTOP2SHW" +
-      "ITNESS\020\005\022\020\n\014PAYTOTAPROOT\020\006*.\n\026DecredStak" +
-      "ingSpendType\022\t\n\005SSGen\020\000\022\t\n\005SSRTX\020\001*J\n\nAm" +
-      "ountUnit\022\013\n\007BITCOIN\020\000\022\020\n\014MILLIBITCOIN\020\001\022" +
-      "\020\n\014MICROBITCOIN\020\002\022\013\n\007SATOSHI\020\003*8\n\024Multis" +
-      "igPubkeysOrder\022\r\n\tPRESERVED\020\000\022\021\n\rLEXICOG" +
-      "RAPHIC\020\001BC\n\'com.sparrowwallet.lark.trezo" +
-      "r.generatedB\024TrezorMessageBitcoin\200\246\035\001"
+      "coinjoin_flags\030\024 \001(\r:\0010\022\036\n\017unified_sigha" +
+      "sh\030\025 \001(\010:\005false\032W\n\017TxOutputBinType\022\016\n\006am" +
+      "ount\030\001 \002(\004\022\025\n\rscript_pubkey\030\002 \002(\014\022\035\n\025dec" +
+      "red_script_version\030\003 \001(\r\032\265\002\n\014TxOutputTyp" +
+      "e\022\017\n\007address\030\001 \001(\t\022\021\n\taddress_n\030\002 \003(\r\022\016\n" +
+      "\006amount\030\003 \002(\004\022O\n\013script_type\030\004 \001(\0162,.hw." +
+      "trezor.messages.bitcoin.OutputScriptType" +
+      ":\014PAYTOADDRESS\022F\n\010multisig\030\005 \001(\01324.hw.tr" +
+      "ezor.messages.bitcoin.MultisigRedeemScri" +
+      "ptType\022\026\n\016op_return_data\030\006 \001(\014\022\021\n\torig_h" +
+      "ash\030\n \001(\014\022\022\n\norig_index\030\013 \001(\r\022\031\n\021payment" +
+      "_req_index\030\014 \001(\r:\002\030\001\"\322\004\n\007TxInput\022\021\n\taddr" +
+      "ess_n\030\001 \003(\r\022\021\n\tprev_hash\030\002 \002(\014\022\022\n\nprev_i" +
+      "ndex\030\003 \002(\r\022\022\n\nscript_sig\030\004 \001(\014\022\034\n\010sequen" +
+      "ce\030\005 \001(\r:\n4294967295\022N\n\013script_type\030\006 \001(" +
+      "\0162+.hw.trezor.messages.bitcoin.InputScri" +
+      "ptType:\014SPENDADDRESS\022F\n\010multisig\030\007 \001(\01324" +
+      ".hw.trezor.messages.bitcoin.MultisigRede" +
+      "emScriptType\022\016\n\006amount\030\010 \002(\004\022\023\n\013decred_t" +
+      "ree\030\t \001(\r\022\017\n\007witness\030\r \001(\014\022\027\n\017ownership_" +
+      "proof\030\016 \001(\014\022\027\n\017commitment_data\030\017 \001(\014\022\021\n\t" +
+      "orig_hash\030\020 \001(\014\022\022\n\norig_index\030\021 \001(\r\022P\n\024d" +
+      "ecred_staking_spend\030\022 \001(\01622.hw.trezor.me" +
+      "ssages.bitcoin.DecredStakingSpendType\022\025\n" +
+      "\rscript_pubkey\030\023 \001(\014\022\031\n\016coinjoin_flags\030\024" +
+      " \001(\r:\0010\022\036\n\017unified_sighash\030\025 \001(\010:\005falseJ" +
+      "\004\010\n\020\013J\004\010\013\020\014J\004\010\014\020\r\"\303\002\n\010TxOutput\022\017\n\007addres" +
+      "s\030\001 \001(\t\022\021\n\taddress_n\030\002 \003(\r\022\016\n\006amount\030\003 \002" +
+      "(\004\022O\n\013script_type\030\004 \001(\0162,.hw.trezor.mess" +
+      "ages.bitcoin.OutputScriptType:\014PAYTOADDR" +
+      "ESS\022F\n\010multisig\030\005 \001(\01324.hw.trezor.messag" +
+      "es.bitcoin.MultisigRedeemScriptType\022\026\n\016o" +
+      "p_return_data\030\006 \001(\014\022\021\n\torig_hash\030\n \001(\014\022\022" +
+      "\n\norig_index\030\013 \001(\r\022\031\n\021payment_req_index\030" +
+      "\014 \001(\rJ\004\010\007\020\010J\004\010\010\020\tJ\004\010\t\020\n\"\342\001\n\006PrevTx\022\017\n\007ve" +
+      "rsion\030\001 \002(\r\022\021\n\tlock_time\030\004 \002(\r\022\024\n\014inputs" +
+      "_count\030\006 \002(\r\022\025\n\routputs_count\030\007 \002(\r\022\031\n\016e" +
+      "xtra_data_len\030\t \001(\r:\0010\022\016\n\006expiry\030\n \001(\r\022\030" +
+      "\n\020version_group_id\030\014 \001(\r\022\021\n\ttimestamp\030\r " +
+      "\001(\r\022\021\n\tbranch_id\030\016 \001(\rJ\004\010\002\020\003J\004\010\003\020\004J\004\010\005\020\006" +
+      "J\004\010\010\020\tJ\004\010\013\020\014\"\301\001\n\tPrevInput\022\021\n\tprev_hash\030" +
+      "\002 \002(\014\022\022\n\nprev_index\030\003 \002(\r\022\022\n\nscript_sig\030" +
+      "\004 \002(\014\022\020\n\010sequence\030\005 \002(\r\022\023\n\013decred_tree\030\t" +
+      " \001(\rJ\004\010\001\020\002J\004\010\006\020\007J\004\010\007\020\010J\004\010\010\020\tJ\004\010\n\020\013J\004\010\013\020\014" +
+      "J\004\010\014\020\rJ\004\010\r\020\016J\004\010\016\020\017J\004\010\017\020\020J\004\010\020\020\021J\004\010\021\020\022J\004\010\022" +
+      "\020\023J\004\010\023\020\024\"R\n\nPrevOutput\022\016\n\006amount\030\001 \002(\004\022\025" +
+      "\n\rscript_pubkey\030\002 \002(\014\022\035\n\025decred_script_v" +
+      "ersion\030\003 \001(\r\"\241\001\n\nTxAckInput\022D\n\002tx\030\001 \002(\0132" +
+      "8.hw.trezor.messages.bitcoin.TxAckInput." +
+      "TxAckInputWrapper\032G\n\021TxAckInputWrapper\0222" +
+      "\n\005input\030\002 \002(\0132#.hw.trezor.messages.bitco" +
+      "in.TxInput:\004\220\262\031\026\"\247\001\n\013TxAckOutput\022F\n\002tx\030\001" +
+      " \002(\0132:.hw.trezor.messages.bitcoin.TxAckO" +
+      "utput.TxAckOutputWrapper\032J\n\022TxAckOutputW" +
+      "rapper\0224\n\006output\030\005 \002(\0132$.hw.trezor.messa" +
+      "ges.bitcoin.TxOutput:\004\220\262\031\026\"E\n\rTxAckPrevM" +
+      "eta\022.\n\002tx\030\001 \002(\0132\".hw.trezor.messages.bit" +
+      "coin.PrevTx:\004\220\262\031\026\"\263\001\n\016TxAckPrevInput\022L\n\002" +
+      "tx\030\001 \002(\0132@.hw.trezor.messages.bitcoin.Tx" +
+      "AckPrevInput.TxAckPrevInputWrapper\032M\n\025Tx" +
+      "AckPrevInputWrapper\0224\n\005input\030\002 \002(\0132%.hw." +
+      "trezor.messages.bitcoin.PrevInput:\004\220\262\031\026\"" +
+      "\271\001\n\017TxAckPrevOutput\022N\n\002tx\030\001 \002(\0132B.hw.tre" +
+      "zor.messages.bitcoin.TxAckPrevOutput.TxA" +
+      "ckPrevOutputWrapper\032P\n\026TxAckPrevOutputWr" +
+      "apper\0226\n\006output\030\003 \002(\0132&.hw.trezor.messag" +
+      "es.bitcoin.PrevOutput:\004\220\262\031\026\"\247\001\n\022TxAckPre" +
+      "vExtraData\022T\n\002tx\030\001 \002(\0132H.hw.trezor.messa" +
+      "ges.bitcoin.TxAckPrevExtraData.TxAckPrev" +
+      "ExtraDataWrapper\0325\n\031TxAckPrevExtraDataWr" +
+      "apper\022\030\n\020extra_data_chunk\030\010 \002(\014:\004\220\262\031\026\"\256\002" +
+      "\n\021GetOwnershipProof\022\021\n\taddress_n\030\001 \003(\r\022\032" +
+      "\n\tcoin_name\030\002 \001(\t:\007Bitcoin\022N\n\013script_typ" +
+      "e\030\003 \001(\0162+.hw.trezor.messages.bitcoin.Inp" +
+      "utScriptType:\014SPENDWITNESS\022F\n\010multisig\030\004" +
+      " \001(\01324.hw.trezor.messages.bitcoin.Multis" +
+      "igRedeemScriptType\022 \n\021user_confirmation\030" +
+      "\005 \001(\010:\005false\022\025\n\rownership_ids\030\006 \003(\014\022\031\n\017c" +
+      "ommitment_data\030\007 \001(\014:\000\"<\n\016OwnershipProof" +
+      "\022\027\n\017ownership_proof\030\001 \002(\014\022\021\n\tsignature\030\002" +
+      " \002(\014\"\277\002\n\021AuthorizeCoinJoin\022\023\n\013coordinato" +
+      "r\030\001 \002(\t\022\022\n\nmax_rounds\030\002 \002(\004\022 \n\030max_coord" +
+      "inator_fee_rate\030\003 \002(\r\022\032\n\022max_fee_per_kvb" +
+      "yte\030\004 \002(\r\022\021\n\taddress_n\030\005 \003(\r\022\032\n\tcoin_nam" +
+      "e\030\006 \001(\t:\007Bitcoin\022N\n\013script_type\030\007 \001(\0162+." +
+      "hw.trezor.messages.bitcoin.InputScriptTy" +
+      "pe:\014SPENDADDRESS\022D\n\013amount_unit\030\010 \001(\0162&." +
+      "hw.trezor.messages.bitcoin.AmountUnit:\007B" +
+      "ITCOIN*~\n\017InputScriptType\022\020\n\014SPENDADDRES" +
+      "S\020\000\022\021\n\rSPENDMULTISIG\020\001\022\014\n\010EXTERNAL\020\002\022\020\n\014" +
+      "SPENDWITNESS\020\003\022\024\n\020SPENDP2SHWITNESS\020\004\022\020\n\014" +
+      "SPENDTAPROOT\020\005*\231\001\n\020OutputScriptType\022\020\n\014P" +
+      "AYTOADDRESS\020\000\022\023\n\017PAYTOSCRIPTHASH\020\001\022\021\n\rPA" +
+      "YTOMULTISIG\020\002\022\021\n\rPAYTOOPRETURN\020\003\022\020\n\014PAYT" +
+      "OWITNESS\020\004\022\024\n\020PAYTOP2SHWITNESS\020\005\022\020\n\014PAYT" +
+      "OTAPROOT\020\006*.\n\026DecredStakingSpendType\022\t\n\005" +
+      "SSGen\020\000\022\t\n\005SSRTX\020\001*J\n\nAmountUnit\022\013\n\007BITC" +
+      "OIN\020\000\022\020\n\014MILLIBITCOIN\020\001\022\020\n\014MICROBITCOIN\020" +
+      "\002\022\013\n\007SATOSHI\020\003*8\n\024MultisigPubkeysOrder\022\r" +
+      "\n\tPRESERVED\020\000\022\021\n\rLEXICOGRAPHIC\020\001BC\n\'com." +
+      "sparrowwallet.lark.trezor.generatedB\024Tre" +
+      "zorMessageBitcoin\200\246\035\001"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -48806,7 +49088,7 @@ public final class TrezorMessageBitcoin {
     internal_static_hw_trezor_messages_bitcoin_TxAck_TransactionType_TxInputType_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_hw_trezor_messages_bitcoin_TxAck_TransactionType_TxInputType_descriptor,
-        new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", "ScriptType", "Multisig", "Amount", "DecredTree", "Witness", "OwnershipProof", "CommitmentData", "OrigHash", "OrigIndex", "DecredStakingSpend", "ScriptPubkey", "CoinjoinFlags", });
+        new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", "ScriptType", "Multisig", "Amount", "DecredTree", "Witness", "OwnershipProof", "CommitmentData", "OrigHash", "OrigIndex", "DecredStakingSpend", "ScriptPubkey", "CoinjoinFlags", "UnifiedSighash", });
     internal_static_hw_trezor_messages_bitcoin_TxAck_TransactionType_TxOutputBinType_descriptor =
       internal_static_hw_trezor_messages_bitcoin_TxAck_TransactionType_descriptor.getNestedTypes().get(1);
     internal_static_hw_trezor_messages_bitcoin_TxAck_TransactionType_TxOutputBinType_fieldAccessorTable = new
@@ -48824,7 +49106,7 @@ public final class TrezorMessageBitcoin {
     internal_static_hw_trezor_messages_bitcoin_TxInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_hw_trezor_messages_bitcoin_TxInput_descriptor,
-        new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", "ScriptType", "Multisig", "Amount", "DecredTree", "Witness", "OwnershipProof", "CommitmentData", "OrigHash", "OrigIndex", "DecredStakingSpend", "ScriptPubkey", "CoinjoinFlags", });
+        new java.lang.String[] { "AddressN", "PrevHash", "PrevIndex", "ScriptSig", "Sequence", "ScriptType", "Multisig", "Amount", "DecredTree", "Witness", "OwnershipProof", "CommitmentData", "OrigHash", "OrigIndex", "DecredStakingSpend", "ScriptPubkey", "CoinjoinFlags", "UnifiedSighash", });
     internal_static_hw_trezor_messages_bitcoin_TxOutput_descriptor =
       getDescriptor().getMessageTypes().get(14);
     internal_static_hw_trezor_messages_bitcoin_TxOutput_fieldAccessorTable = new

@@ -64,6 +64,22 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
     }
 
     /**
+     * Create TrezorDevice over a transport that is not USB, which is how the emulator is driven.
+     * The emulator runs the same firmware sources as a device and speaks the same protocol.
+     *
+     * @param transport The transport to talk over
+     * @param trezorUI User interaction callbacks
+     * @param trezorModel The Trezor model (may be null, will be detected from features)
+     * @param credentialStore Credential storage for THP pairing (may be null for default)
+     * @throws DeviceException if the protocol cannot be negotiated
+     */
+    public TrezorDevice(Transport transport, TrezorUI trezorUI, TrezorModel trezorModel, TrezorNoiseConfig credentialStore) throws DeviceException {
+        this.trezorUI = trezorUI;
+        this.model = trezorModel;
+        this.protocol = ProtocolFactory.createProtocol(transport, trezorUI, this, credentialStore);
+    }
+
+    /**
      * Create TrezorDevice with specified protocol.
      * Package-private constructor for factory use.
      *
@@ -235,7 +251,7 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
         Message response = call(signTx.build(), Message.class);
         while(true) {
             if(response instanceof TrezorMessageBitcoin.TxRequest txRequest) {
-                serializedTx = extractStreamedData(serializedTx, signatures, txRequest.getSerialized());
+                serializedTx = extractStreamedData(serializedTx, signatures, txRequest.getSerialized(), inputs);
                 if(txRequest.getRequestType() == TrezorMessageBitcoin.TxRequest.RequestType.TXFINISHED) {
                     break;
                 }
@@ -254,14 +270,24 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
         return signatures;
     }
 
-    private byte[] extractStreamedData(byte[] serializedTx, List<TransactionSignature> signatures, TrezorMessageBitcoin.TxRequest.TxRequestSerializedType serialized) {
+    private byte[] extractStreamedData(byte[] serializedTx, List<TransactionSignature> signatures, TrezorMessageBitcoin.TxRequest.TxRequestSerializedType serialized,
+                                       List<TrezorMessageBitcoin.TxInput> inputs) {
         if(serialized.hasSignatureIndex()) {
             TransactionSignature transactionSignature;
             byte[] signatureBytes = serialized.getSignature().toByteArray();
+            //The device signs the hash type the input asked for. Recording it here is what lets the
+            //PSBT say which algorithm produced the signature, rather than assuming the legacy one.
+            int signatureIndex = serialized.getSignatureIndex();
+            boolean unified = signatureIndex >= 0 && signatureIndex < inputs.size()
+                    && inputs.get(signatureIndex).getUnifiedSighash();
             if(signatureBytes.length == 64) {
-                transactionSignature = new TransactionSignature(SchnorrSignature.decode(signatureBytes), SigHash.DEFAULT);
+                //An opted-in taproot spend carries the hash type byte in the witness, so the signature
+                //itself is still 64 bytes; SIGHASH_DEFAULT has no unified form.
+                transactionSignature = new TransactionSignature(SchnorrSignature.decode(signatureBytes),
+                        unified ? SigHash.UNIFIED_ALL : SigHash.DEFAULT);
             } else {
-                transactionSignature = new TransactionSignature(ECDSASignature.decodeFromDER(signatureBytes), SigHash.ALL);
+                transactionSignature = new TransactionSignature(ECDSASignature.decodeFromDER(signatureBytes),
+                        unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
             }
             signatures.set(serialized.getSignatureIndex(), transactionSignature);
         }
