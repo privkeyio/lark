@@ -278,8 +278,11 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
             //The device signs the hash type the input asked for. Recording it here is what lets the
             //PSBT say which algorithm produced the signature, rather than assuming the legacy one.
             int signatureIndex = serialized.getSignatureIndex();
-            boolean unified = signatureIndex >= 0 && signatureIndex < inputs.size()
-                    && inputs.get(signatureIndex).getUnifiedSighash();
+            if(signatureIndex < 0 || signatureIndex >= signatures.size()) {
+                throw new IllegalStateException("Device returned a signature for input " + signatureIndex
+                        + ", which this transaction does not have");
+            }
+            boolean unified = signatureIndex < inputs.size() && inputs.get(signatureIndex).getUnifiedSighash();
             if(signatureBytes.length == 64) {
                 //An opted-in taproot spend carries the hash type byte in the witness, so the signature
                 //itself is still 64 bytes; SIGHASH_DEFAULT has no unified form.
@@ -387,6 +390,30 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
         refreshFeatures();
         return resp;
     }
+
+    /**
+     * Whether the device reports Capability_UnifiedSigHash (28).
+     *
+     * Read from the unknown fields as well as the known ones: the capability was added after the
+     * protobuf in this tree was generated, and proto2 keeps an unrecognised repeated enum value in the
+     * unknown fields rather than discarding it. Checking only the parsed list would read absent on
+     * firmware that does support it.
+     */
+    public boolean supportsUnifiedSigHash() {
+        if(features == null) {
+            return false;
+        }
+        for(TrezorMessageManagement.Features.Capability capability : features.getCapabilitiesList()) {
+            if(capability.getNumber() == CAPABILITY_UNIFIED_SIGHASH) {
+                return true;
+            }
+        }
+        return features.getUnknownFields().getField(CAPABILITIES_FIELD_NUMBER).getVarintList()
+                .contains((long)CAPABILITY_UNIFIED_SIGHASH);
+    }
+
+    private static final int CAPABILITIES_FIELD_NUMBER = 30;
+    private static final int CAPABILITY_UNIFIED_SIGHASH = 28;
 
     public boolean supportsExternal() {
         if(model.equals(TrezorModel.T1B1) && version.compareTo(new Version("1.10.5")) <= 0) {

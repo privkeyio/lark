@@ -11,6 +11,7 @@ import com.sparrowwallet.drongo.policy.PolicyType;
 import com.sparrowwallet.drongo.protocol.*;
 import com.sparrowwallet.drongo.psbt.PSBT;
 import com.sparrowwallet.drongo.psbt.PSBTInput;
+import com.sparrowwallet.drongo.wallet.DeterministicSeed;
 import com.sparrowwallet.drongo.wallet.Keystore;
 import com.sparrowwallet.drongo.wallet.KeystoreSource;
 import com.sparrowwallet.drongo.wallet.Wallet;
@@ -130,6 +131,37 @@ public class TrezorEmulatorHarness {
         return wallet;
     }
 
+    /**
+     * A 2-of-2 P2WSH wallet: one key on the device, one a software seed. The second key is what makes
+     * the device's multisig path run, and it is also the cosigner that finishes the transaction.
+     *
+     * A P2WSH input takes the witnessScript as the script code the unified message commits to, where a
+     * P2WPKH input takes the implied P2PKH script instead, so this exercises the other branch.
+     */
+    private static final String COSIGNER_MNEMONIC =
+            "absent essay fox snake vast pumpkin height crouch silent bulb excuse razor";
+
+    private static Wallet multisigWallet(EmulatorClient client) throws Exception {
+        Wallet wallet = new Wallet();
+        wallet.setPolicyType(PolicyType.MULTI_HD);
+        wallet.setScriptType(ScriptType.P2WSH);
+
+        String accountPath = KeyDerivation.writePath(ScriptType.P2WSH.getDefaultDerivation());
+        Keystore deviceKeystore = new Keystore("Trezor");
+        deviceKeystore.setSource(KeystoreSource.HW_USB);
+        deviceKeystore.setWalletModel(WalletModel.TREZOR_1);
+        deviceKeystore.setKeyDerivation(new KeyDerivation(client.fingerprint(), accountPath));
+        deviceKeystore.setExtendedPublicKey(client.getPubKeyAtPath(accountPath));
+        wallet.getKeystores().add(deviceKeystore);
+
+        DeterministicSeed seed = new DeterministicSeed(COSIGNER_MNEMONIC, "", 0, DeterministicSeed.Type.BIP39);
+        wallet.getKeystores().add(Keystore.fromSeed(seed, PolicyType.MULTI_HD, ScriptType.P2WSH.getDefaultDerivation()));
+
+        wallet.setDefaultPolicy(Policy.getPolicy(PolicyType.MULTI_HD, ScriptType.P2WSH, wallet.getKeystores(), 2));
+        wallet.getNode(KeyPurpose.RECEIVE);
+        return wallet;
+    }
+
     private static WalletNode firstReceiveNode(Wallet wallet) {
         return wallet.getNode(KeyPurpose.RECEIVE).getChildren().iterator().next();
     }
@@ -141,8 +173,12 @@ public class TrezorEmulatorHarness {
         client.initializeMasterFingerprint();
 
         String mode = args[0];
-        ScriptType scriptType = ScriptType.valueOf(args[1]);
-        Wallet wallet = deviceWallet(client, scriptType);
+        boolean multisig = mode.startsWith("multisig");
+        ScriptType scriptType = multisig ? ScriptType.P2WSH : ScriptType.valueOf(args[1]);
+        Wallet wallet = multisig ? multisigWallet(client) : deviceWallet(client, scriptType);
+        if(multisig) {
+            mode = mode.substring("multisig".length()).toLowerCase();
+        }
 
         if("scriptpubkey".equals(mode)) {
             System.out.println("SPK=" + Utils.bytesToHex(wallet.getOutputScript(firstReceiveNode(wallet)).getProgram()));
@@ -171,10 +207,40 @@ public class TrezorEmulatorHarness {
 
         PSBT psbt = new PSBT(transaction);
         PSBTInput psbtInput = psbt.getPsbtInputs().getFirst();
-        psbtInput.setWitnessUtxo(new TransactionOutput(null, prevValue, spk.getProgram()));
-        //Trezor verifies every input amount against the transaction that created it, so it wants the
-        //whole previous transaction rather than only the output being spent.
+        //A witness utxo belongs only on a segwit input; PSBT rejects one on a legacy input. Trezor
+        //verifies every input amount against the transaction that created it, so the whole previous
+        //transaction is supplied either way.
+        if(scriptType != ScriptType.P2PKH) {
+            psbtInput.setWitnessUtxo(new TransactionOutput(null, prevValue, spk.getProgram()));
+        }
         psbtInput.setNonWitnessUtxo(prevTx);
+
+        if(multisig) {
+            //The script code a segwit v0 multisig input commits to, and the xpubs the device needs to
+            //recognise the redeem script as its own.
+            psbtInput.setWitnessScript(ScriptType.MULTISIG.getOutputScript(
+                    wallet.getDefaultPolicy().getNumSignaturesRequired(), receiveNode.getPubKeys()));
+            for(Keystore keystore : wallet.getKeystores()) {
+                psbt.getExtendedPublicKeys().put(keystore.getExtendedPublicKey(), keystore.getKeyDerivation());
+                psbtInput.getDerivedPublicKeys().put(
+                        keystore.getPubKey(receiveNode),
+                        keystore.getKeyDerivation().extend(receiveNode.getDerivation()));
+            }
+            psbtInput.setSigHash(unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
+            System.out.println("DECLARED=" + psbtInput.getSigHash());
+
+            //The device signs first, then the software cosigner finishes it under the same hash type.
+            client.signTransaction(psbt);
+            wallet.sign(psbt);
+
+            TransactionSignature deviceSignature = psbtInput.getPartialSignatures().values().iterator().next();
+            System.out.println("RETURNED_SIGHASH=0x" + String.format("%02x", deviceSignature.sighashFlags));
+            System.out.println("SIGNATURES=" + psbtInput.getPartialSignatures().size());
+
+            wallet.finalise(psbt);
+            System.out.println("TX=" + Utils.bytesToHex(psbt.extractTransaction().bitcoinSerialize()));
+            return;
+        }
 
         //Where the device looks to decide the input is one of its own.
         KeyDerivation keyDerivation = wallet.getKeystores().getFirst().getKeyDerivation()

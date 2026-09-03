@@ -35,6 +35,9 @@ public class UdpTransport implements Transport {
             this.address = InetAddress.getByName(host);
             this.port = port;
             this.socket = new DatagramSocket();
+            //Only the emulator may answer: an unconnected socket takes a datagram from any source, so a
+            //local process could race its replies.
+            this.socket.connect(this.address, this.port);
             this.socket.setSoTimeout(DEFAULT_TIMEOUT);
         } catch(IOException e) {
             throw new DeviceException("Could not open UDP transport to " + host + ":" + port, e);
@@ -67,7 +70,7 @@ public class UdpTransport implements Transport {
             chunk = Arrays.copyOf(chunk, PACKET_SIZE);
         }
         try {
-            socket.send(new DatagramPacket(chunk, chunk.length, address, port));
+            socket.send(new DatagramPacket(chunk, chunk.length));
         } catch(IOException e) {
             throw new DeviceException("Could not write to the Trezor emulator", e);
         }
@@ -86,6 +89,9 @@ public class UdpTransport implements Transport {
             byte[] buf = new byte[PACKET_SIZE];
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             socket.receive(packet);
+            if(packet.getLength() != PACKET_SIZE) {
+                throw new DeviceException("Emulator sent a " + packet.getLength() + " byte datagram, expected " + PACKET_SIZE);
+            }
             return Arrays.copyOf(buf, PACKET_SIZE);
         } catch(SocketTimeoutException e) {
             throw new DeviceTimeoutException("Timed out reading from the Trezor emulator");

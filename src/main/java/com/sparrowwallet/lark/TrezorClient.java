@@ -9,6 +9,7 @@ import com.sparrowwallet.drongo.crypto.ECKey;
 import com.sparrowwallet.drongo.protocol.*;
 import com.sparrowwallet.drongo.psbt.PSBT;
 import com.sparrowwallet.drongo.psbt.PSBTInput;
+import com.sparrowwallet.drongo.psbt.PSBTParseException;
 import com.sparrowwallet.drongo.psbt.PSBTOutput;
 import com.sparrowwallet.drongo.wallet.WalletModel;
 import com.sparrowwallet.lark.trezor.PassphraseUI;
@@ -197,11 +198,13 @@ public class TrezorClient extends HardwareClient {
 
             int passes = 1;
             int p = 0;
+            boolean unifiedRequested = false;
 
             while(p < passes) {
                 List<TrezorMessageBitcoin.TxInput> inputs = new ArrayList<>();
                 List<Integer> toIgnore = new ArrayList<>();
-                List<Integer> unifiedRequested = new ArrayList<>();
+                //Inputs the device cannot sign, which it is handed a stand-in derivation path for.
+                List<Integer> fabricatedInputs = new ArrayList<>();
 
                 for(int inputIndex = 0; inputIndex < psbt.getPsbtInputs().size(); inputIndex++) {
                     PSBTInput psbtInput = psbt.getPsbtInputs().get(inputIndex);
@@ -271,7 +274,7 @@ public class TrezorClient extends HardwareClient {
                                 if(!trezorDevice.supportsExternal()) {
                                     throw new DeviceException("Cannot sign bare multisig inputs");
                                 }
-                                ignoreInput(inputs, toIgnore, inputIndex, txInput);
+                                ignoreInput(inputs, toIgnore, inputIndex, txInput, fabricatedInputs);
                                 continue;
                             }
                         }
@@ -280,14 +283,14 @@ public class TrezorClient extends HardwareClient {
                         if(!trezorDevice.supportsExternal()) {
                             throw new DeviceException("Cannot sign unknown scripts");
                         }
-                        ignoreInput(inputs, toIgnore, inputIndex, txInput);
+                        ignoreInput(inputs, toIgnore, inputIndex, txInput, fabricatedInputs);
                         continue;
                     } else if(optWitnessType.isPresent() && p2wsh) {
                         //Cannot sign unknown witness script, ignore it
                         if(!trezorDevice.supportsExternal()) {
                             throw new DeviceException("Cannot sign unknown witness versionss");
                         }
-                        ignoreInput(inputs, toIgnore, inputIndex, txInput);
+                        ignoreInput(inputs, toIgnore, inputIndex, txInput, fabricatedInputs);
                         continue;
                     }
 
@@ -339,7 +342,7 @@ public class TrezorClient extends HardwareClient {
                         if(!trezorDevice.supportsExternal()) {
                             throw new DeviceException("Cannot sign external inputs");
                         }
-                        ignoreInput(inputs, toIgnore, inputIndex, txInput);
+                        ignoreInput(inputs, toIgnore, inputIndex, txInput, fabricatedInputs);
                         continue;
                     } else if(!found && foundInSigs) {
                         //All of our keys are in partial_sigs, pick the first key that is ours, sign with it,
@@ -360,11 +363,40 @@ public class TrezorClient extends HardwareClient {
                             throw new DeviceException("Trezor can only sign SIGHASH_ALL, so it cannot produce " + sigHash.getName()
                                     + " for input " + inputIndex);
                         }
+                        //Refuse before the device is asked, rather than discovering afterwards that it
+                        //signed the legacy message: firmware without the opt-in ignores an unknown field.
+                        if(!trezorDevice.supportsUnifiedSigHash()) {
+                            throw new DeviceException("This Trezor's firmware does not implement the unified signature "
+                                    + "hash, so it cannot give input " + inputIndex + " the replay protection the "
+                                    + "transaction asks for. It would sign the legacy message instead.");
+                        }
                         txInput.setUnifiedSighash(true);
-                        unifiedRequested.add(inputIndex);
+                        unifiedRequested = true;
                     }
 
                     inputs.add(txInput.build());
+                }
+
+                //An input the device cannot sign is handed a stand-in derivation path, and the firmware
+                //derives that input's scriptPubKey from it. The unified message commits to the
+                //scriptPubKey of every input, not just the one being signed, so a stand-in would be
+                //hashed into every opted-in signature in this transaction and none of them would be
+                //valid on chain. There is no way to sign this correctly, so refuse it.
+                if(unifiedRequested && inputs.size() != psbt.getPsbtInputs().size()) {
+                    //A PSBT input the device cannot even be told about is dropped from the list, so the
+                    //device would sign a transaction with fewer inputs than this one. The unified message
+                    //commits to every input, so that signature describes another transaction entirely.
+                    throw new DeviceException("This transaction opts in to the unified signature hash, but "
+                            + (psbt.getPsbtInputs().size() - inputs.size()) + " of its inputs could not be described to "
+                            + "the device. The unified message commits to every input, so the device would be signing a "
+                            + "different transaction.");
+                }
+
+                if(unifiedRequested && !fabricatedInputs.isEmpty()) {
+                    throw new DeviceException("This transaction opts in to the unified signature hash and also has "
+                            + "input " + fabricatedInputs.getFirst() + ", which this device cannot sign. The unified "
+                            + "message commits to every input's script, so the device would have to be told a script "
+                            + "for that input that is not the real one, and every signature would be invalid.");
                 }
 
                 //Prepare outputs
@@ -478,20 +510,6 @@ public class TrezorClient extends HardwareClient {
                 List<TransactionSignature> signatures = trezorDevice.signTx(Network.get(), inputs, outputs, prevTxs,
                         psbt.getTransaction().getVersion(), psbt.getTransaction().getLocktime());
 
-                //Firmware without the opt-in ignores the field and signs the legacy digest, which would
-                //be a transaction with none of the replay protection the PSBT asked for and no error to
-                //say so. Check what came back rather than trusting that the request was understood.
-                for(int inputIndex : unifiedRequested) {
-                    if(toIgnore.contains(inputIndex)) {
-                        continue;
-                    }
-                    TransactionSignature signature = signatures.get(inputIndex);
-                    if(signature != null && (signature.sighashFlags & SigHash.UNIFIED_FLAG) == 0) {
-                        throw new DeviceException("This Trezor signed input " + inputIndex + " without the unified signature hash, "
-                                + "which its firmware does not implement. The transaction would have no replay protection.");
-                    }
-                }
-
                 for(int inputIndex = 0; inputIndex < psbt.getPsbtInputs().size(); inputIndex++) {
                     PSBTInput psbtInput = psbt.getPsbtInputs().get(inputIndex);
                     if(toIgnore.contains(inputIndex)) {
@@ -511,16 +529,44 @@ public class TrezorClient extends HardwareClient {
 
                 p++;
             }
+
+            //Firmware without the opt-in ignores the field and signs the legacy digest, and the
+            //signature carries no record of which message it was made over, so asking the device what
+            //it did is not possible. Verifying the signature against the digest the PSBT declares is,
+            //and a legacy signature cannot verify against the unified one.
+            if(unifiedRequested) {
+                for(PSBTInput psbtInput : psbt.getPsbtInputs()) {
+                    //A device that answers with no signature for an input leaves a null here, which reads
+                    //as signed to isSigned() and only fails later, at finalise or serialization.
+                    if(psbtInput.getPartialSignatures().values().stream().anyMatch(signature -> signature == null)) {
+                        throw new DeviceException("This Trezor returned no signature for an input that opts in to the "
+                                + "unified signature hash.");
+                    }
+                }
+                try {
+                    new PSBT(psbt.serialize(), true);
+                } catch(PSBTParseException e) {
+                    //Stated as what was observed rather than as a diagnosis: a signature made over the
+                    //legacy digest fails this the same way a malformed input does, and firmware without
+                    //the opt-in is only the most likely of those.
+                    throw new DeviceException("The signatures this Trezor returned do not verify against the unified "
+                            + "signature hash the transaction asks for, so it would carry none of the replay "
+                            + "protection intended. Firmware without the opt-in ignores the request and signs the "
+                            + "legacy message, which is the usual cause. (" + e.getMessage() + ")");
+                }
+            }
         }
 
         return psbt;
     }
 
-    private void ignoreInput(List<TrezorMessageBitcoin.TxInput> inputs, List<Integer> toIgnore, int inputIndex, TrezorMessageBitcoin.TxInput.Builder txInput) {
+    private void ignoreInput(List<TrezorMessageBitcoin.TxInput> inputs, List<Integer> toIgnore, int inputIndex, TrezorMessageBitcoin.TxInput.Builder txInput,
+                             List<Integer> fabricated) {
         txInput.addAllAddressN(KeyDerivation.parsePath(ScriptType.P2WPKH.getDefaultDerivationPath() + "/0/0").stream().map(ChildNumber::i).toList());
         txInput.setScriptType(TrezorMessageBitcoin.InputScriptType.SPENDWITNESS);
         inputs.add(txInput.build());
         toIgnore.add(inputIndex);
+        fabricated.add(inputIndex);
     }
 
     private Optional<TrezorMessageBitcoin.MultisigRedeemScriptType> getMultisig(Script script, Map<ExtendedKey, KeyDerivation> globalXpubs, Map<ECKey, KeyDerivation> derivedPublicKeys) {
