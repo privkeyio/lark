@@ -5,7 +5,7 @@ import com.sparrowwallet.lark.trezor.Transport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +23,10 @@ import java.util.List;
 public class ChannelAllocator {
     private static final Logger log = LoggerFactory.getLogger(ChannelAllocator.class);
 
-    private static final int MAX_PACKETS = 100; // Safety limit for reassembly
+    /** How long to wait for the device to allocate a channel */
+    private static final int ALLOCATION_TIMEOUT_MS = 5000;
+
+    private static final int NONCE_LENGTH = 8;
 
     private final Transport transport;
 
@@ -62,7 +65,7 @@ public class ChannelAllocator {
         }
 
         // Receive and parse allocation response
-        byte[] responsePayload = receiveAllocationResponse();
+        byte[] responsePayload = receiveAllocationResponse(nonce);
 
         if(log.isDebugEnabled()) {
             log.debug("Received channel allocation response ({} bytes)", responsePayload.length);
@@ -97,90 +100,34 @@ public class ChannelAllocator {
 
     /**
      * Receive allocation response from broadcast channel.
-     */
-    private byte[] receiveAllocationResponse() throws DeviceException {
-        List<byte[]> packets = new ArrayList<>();
-
-        // Read first packet to determine message length
-        byte[] firstPacket = transport.read();
-        if(firstPacket == null || firstPacket.length != 64) {
-            throw new DeviceException("Invalid first packet received");
-        }
-
-        // Verify it's an allocation response
-        byte controlByte = firstPacket[0];
-        if(ControlByte.getPacketType(controlByte) != ControlByte.PacketType.CHANNEL_ALLOCATION_RESP) {
-            throw new DeviceException("Expected CHANNEL_ALLOCATION_RES, got " + ControlByte.getPacketType(controlByte));
-        }
-
-        // Verify broadcast channel
-        int channelId = PacketCodec.getChannelId(firstPacket);
-        if(channelId != Channel.BROADCAST_CHANNEL_ID) {
-            throw new DeviceException("Expected broadcast channel, got 0x" + String.format("%04X", channelId));
-        }
-
-        packets.add(firstPacket);
-
-        // Get application data length from first packet
-        int totalLength = PacketCodec.getLength(firstPacket);
-
-        // Calculate required number of packets
-        int requiredPackets = calculateRequiredPackets(totalLength);
-
-        // Read remaining packets
-        for(int i = 1; i < requiredPackets; i++) {
-            if(i >= MAX_PACKETS) {
-                throw new DeviceException("Too many packets received (possible protocol error)");
-            }
-
-            byte[] packet = transport.read();
-            if(packet == null || packet.length != 64) {
-                throw new DeviceException("Invalid continuation packet received");
-            }
-
-            // Verify it's a continuation packet
-            if(!ControlByte.isContinuation(packet[0])) {
-                throw new DeviceException("Expected continuation packet");
-            }
-
-            // Verify channel ID matches
-            int contChannelId = PacketCodec.getChannelId(packet);
-            if(contChannelId != Channel.BROADCAST_CHANNEL_ID) {
-                throw new DeviceException("Channel ID mismatch in continuation packet");
-            }
-
-            packets.add(packet);
-        }
-
-        // Reassemble packets into application data
-        PacketCodec.ReassembledMessage message = PacketCodec.reassemble(packets);
-        return message.applicationData;
-    }
-
-    /**
-     * Calculate number of packets required for a message.
      *
-     * @param transportPayloadLength Length from packet header (includes CRC)
-     * @return Number of packets needed
+     * An attempt that ended without reading its response leaves the device sending packets for minutes,
+     * so anything that is not the response to this request is discarded rather than failing allocation.
      */
-    private int calculateRequiredPackets(int transportPayloadLength) {
-        // Length already includes CRC (no need to add 4)
+    private byte[] receiveAllocationResponse(byte[] nonce) throws DeviceException {
+        long deadline = System.currentTimeMillis() + ALLOCATION_TIMEOUT_MS;
 
-        // First packet: 5-byte header + 59 bytes payload
-        int firstPacketPayload = 59;
+        while(true) {
+            PacketCodec.ReassembledMessage message = PacketReader.read(transport, deadline);
 
-        if(transportPayloadLength <= firstPacketPayload) {
-            return 1;
+            if(ControlByte.getPacketType(message.controlByte) != ControlByte.PacketType.CHANNEL_ALLOCATION_RESP
+                    || message.channelId != Channel.BROADCAST_CHANNEL_ID) {
+                if(log.isDebugEnabled()) {
+                    log.debug("Discarding {} for channel 0x{} while awaiting channel allocation",
+                            ControlByte.toString(message.controlByte), String.format("%04X", message.channelId));
+                }
+                continue;
+            }
+
+            // A response carrying a different nonce answers an allocation request we have abandoned
+            if(message.applicationData.length < NONCE_LENGTH || !Arrays.equals(message.applicationData, 0, NONCE_LENGTH, nonce, 0, NONCE_LENGTH)) {
+                if(log.isDebugEnabled()) {
+                    log.debug("Discarding channel allocation response for another request");
+                }
+                continue;
+            }
+
+            return message.applicationData;
         }
-
-        // Remaining bytes need continuation packets
-        int remainingBytes = transportPayloadLength - firstPacketPayload;
-
-        // Each continuation packet: 3-byte header + 61 bytes payload
-        int continuationPacketPayload = 61;
-
-        int continuationPackets = (remainingBytes + continuationPacketPayload - 1) / continuationPacketPayload;
-
-        return 1 + continuationPackets;
     }
 }
