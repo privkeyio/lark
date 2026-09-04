@@ -368,9 +368,13 @@ public class TrezorClient extends HardwareClient {
                         //Refuse before the device is asked, rather than discovering afterwards that it
                         //signed the legacy message: firmware without the opt-in ignores an unknown field.
                         if(!trezorDevice.supportsUnifiedSigHash()) {
-                            throw new DeviceException("This Trezor's firmware does not implement the unified signature "
-                                    + "hash, so it cannot give input " + inputIndex + " the replay protection the "
-                                    + "transaction asks for. It would sign the legacy message instead.");
+                            //Named from the model rather than hardcoded: KeepKey and OneKey inherit this
+                            //client, and their firmware will never report the capability, so this is the
+                            //message their owners see.
+                            throw new DeviceException("This " + getModel().toDisplayString() + "'s firmware does not "
+                                    + "implement the unified signature hash, so it cannot give input " + inputIndex
+                                    + " the replay protection the transaction asks for. It would sign the legacy "
+                                    + "message instead.");
                         }
                         txInput.setUnifiedSighash(true);
                         unifiedRequested = true;
