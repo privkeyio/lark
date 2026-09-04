@@ -392,7 +392,7 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
     }
 
     /**
-     * Whether the device reports Capability_UnifiedSigHash (28).
+     * Whether the device reports Capability_UnifiedSigHash (29).
      *
      * Read from the unknown fields as well as the known ones: the capability was added after the
      * protobuf in this tree was generated, and proto2 keeps an unrecognised repeated enum value in the
@@ -413,7 +413,10 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
     }
 
     private static final int CAPABILITIES_FIELD_NUMBER = 30;
-    private static final int CAPABILITY_UNIFIED_SIGHASH = 28;
+    //29, not 28: upstream assigned 28 to Capability_Ethereum_EIP7702, so a device reporting 28
+    //is claiming that and not this. Matching 28 as well would read the opt-in off firmware that
+    //never offered it.
+    private static final int CAPABILITY_UNIFIED_SIGHASH = 29;
 
     public boolean supportsExternal() {
         if(model.equals(TrezorModel.T1B1) && version.compareTo(new Version("1.10.5")) <= 0) {
