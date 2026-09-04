@@ -110,6 +110,18 @@ public class ControlByte {
         }
     }
 
+    /**
+     * Check if a received packet is acknowledged under the Alternating Bit Protocol.
+     * Only handshake and encrypted transport messages carry a sequence bit and are acknowledged -
+     * ACKs, transport errors, channel allocation and ping/pong are not.
+     */
+    public static boolean isAcknowledged(byte ctrlByte) {
+        return switch(getPacketType(ctrlByte)) {
+            case HANDSHAKE_INIT_REQ, HANDSHAKE_INIT_RESP, HANDSHAKE_COMP_REQ, HANDSHAKE_COMP_RESP, ENCRYPTED_TRANSPORT -> true;
+            default -> false;
+        };
+    }
+
     // ===== Data Packet SEQ/ACK Bits =====
 
     /**
