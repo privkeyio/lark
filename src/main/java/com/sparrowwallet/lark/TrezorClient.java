@@ -10,6 +10,7 @@ import com.sparrowwallet.drongo.protocol.*;
 import com.sparrowwallet.drongo.psbt.PSBT;
 import com.sparrowwallet.drongo.psbt.PSBTInput;
 import com.sparrowwallet.drongo.psbt.PSBTParseException;
+import com.sparrowwallet.drongo.psbt.PSBTSignatureException;
 import com.sparrowwallet.drongo.psbt.PSBTOutput;
 import com.sparrowwallet.drongo.wallet.WalletModel;
 import com.sparrowwallet.lark.trezor.PassphraseUI;
@@ -199,6 +200,7 @@ public class TrezorClient extends HardwareClient {
             int passes = 1;
             int p = 0;
             boolean unifiedRequested = false;
+            List<Integer> unifiedInputs = new ArrayList<>();
 
             while(p < passes) {
                 List<TrezorMessageBitcoin.TxInput> inputs = new ArrayList<>();
@@ -372,6 +374,7 @@ public class TrezorClient extends HardwareClient {
                         }
                         txInput.setUnifiedSighash(true);
                         unifiedRequested = true;
+                        unifiedInputs.add(inputIndex);
                     }
 
                     inputs.add(txInput.build());
@@ -382,14 +385,16 @@ public class TrezorClient extends HardwareClient {
                 //scriptPubKey of every input, not just the one being signed, so a stand-in would be
                 //hashed into every opted-in signature in this transaction and none of them would be
                 //valid on chain. There is no way to sign this correctly, so refuse it.
-                if(unifiedRequested && inputs.size() != psbt.getPsbtInputs().size()) {
-                    //A PSBT input the device cannot even be told about is dropped from the list, so the
-                    //device would sign a transaction with fewer inputs than this one. The unified message
-                    //commits to every input, so that signature describes another transaction entirely.
-                    throw new DeviceException("This transaction opts in to the unified signature hash, but "
-                            + (psbt.getPsbtInputs().size() - inputs.size()) + " of its inputs could not be described to "
-                            + "the device. The unified message commits to every input, so the device would be signing a "
-                            + "different transaction.");
+                if(inputs.size() != psbt.getPsbtInputs().size()) {
+                    //A PSBT input that cannot be described to the device at all is dropped from the list,
+                    //and the device then signs a transaction with fewer inputs than this one. The
+                    //signatures that come back are indexed by the device's list, so from the first dropped
+                    //input onwards they would be attributed to the wrong input. Under the opt-in it is
+                    //worse still, because the unified message commits to every input, but a misattributed
+                    //signature is a broken transaction either way.
+                    throw new DeviceException((psbt.getPsbtInputs().size() - inputs.size()) + " of this "
+                            + "transaction's inputs could not be described to the device, which would leave the "
+                            + "signatures it returns attributed to the wrong inputs.");
                 }
 
                 if(unifiedRequested && !fabricatedInputs.isEmpty()) {
@@ -535,24 +540,36 @@ public class TrezorClient extends HardwareClient {
             //it did is not possible. Verifying the signature against the digest the PSBT declares is,
             //and a legacy signature cannot verify against the unified one.
             if(unifiedRequested) {
-                for(PSBTInput psbtInput : psbt.getPsbtInputs()) {
-                    //A device that answers with no signature for an input leaves a null here, which reads
-                    //as signed to isSigned() and only fails later, at finalise or serialization.
-                    if(psbtInput.getPartialSignatures().values().stream().anyMatch(signature -> signature == null)) {
-                        throw new DeviceException("This Trezor returned no signature for an input that opts in to the "
-                                + "unified signature hash.");
+                for(int inputIndex : unifiedInputs) {
+                    PSBTInput psbtInput = psbt.getPsbtInputs().get(inputIndex);
+                    //A device that answers with no signature leaves a null, which reads as signed to
+                    //isSigned() and only fails later. A taproot signature is kept in its own field, and an
+                    //absent one is not a null in the map but nothing at all, so both are checked here: the
+                    //re-parse below cannot see a taproot signature that was never written.
+                    boolean missing = psbtInput.getPartialSignatures().values().stream()
+                            .anyMatch(signature -> signature == null);
+                    if(psbtInput.getTapInternalKey() != null) {
+                        missing |= psbtInput.getTapKeyPathSignature() == null;
+                    } else {
+                        missing |= psbtInput.getPartialSignatures().isEmpty();
+                    }
+                    if(missing) {
+                        throw new DeviceException("This Trezor returned no signature for input " + inputIndex
+                                + ", which opts in to the unified signature hash.");
                     }
                 }
                 try {
                     new PSBT(psbt.serialize(), true);
+                } catch(PSBTSignatureException e) {
+                    //Only a signature failure, not any structural complaint, and stated as what was
+                    //observed: this checks every signature on the transaction, including a co-signer's,
+                    //so naming the Trezor as the cause would sometimes be wrong.
+                    throw new DeviceException("A signature on this transaction does not verify against the hash type "
+                            + "the input declares, so it would not carry the replay protection intended. ("
+                            + e.getMessage() + ")");
                 } catch(PSBTParseException e) {
-                    //Stated as what was observed rather than as a diagnosis: a signature made over the
-                    //legacy digest fails this the same way a malformed input does, and firmware without
-                    //the opt-in is only the most likely of those.
-                    throw new DeviceException("The signatures this Trezor returned do not verify against the unified "
-                            + "signature hash the transaction asks for, so it would carry none of the replay "
-                            + "protection intended. Firmware without the opt-in ignores the request and signs the "
-                            + "legacy message, which is the usual cause. (" + e.getMessage() + ")");
+                    throw new DeviceException("The signed transaction could not be read back to check its signatures. ("
+                            + e.getMessage() + ")");
                 }
             }
         }

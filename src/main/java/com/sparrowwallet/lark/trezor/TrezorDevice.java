@@ -271,7 +271,7 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
     }
 
     private byte[] extractStreamedData(byte[] serializedTx, List<TransactionSignature> signatures, TrezorMessageBitcoin.TxRequest.TxRequestSerializedType serialized,
-                                       List<TrezorMessageBitcoin.TxInput> inputs) {
+                                       List<TrezorMessageBitcoin.TxInput> inputs) throws DeviceException {
         if(serialized.hasSignatureIndex()) {
             TransactionSignature transactionSignature;
             byte[] signatureBytes = serialized.getSignature().toByteArray();
@@ -279,7 +279,7 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
             //PSBT say which algorithm produced the signature, rather than assuming the legacy one.
             int signatureIndex = serialized.getSignatureIndex();
             if(signatureIndex < 0 || signatureIndex >= signatures.size()) {
-                throw new IllegalStateException("Device returned a signature for input " + signatureIndex
+                throw new DeviceException("Device returned a signature for input " + signatureIndex
                         + ", which this transaction does not have");
             }
             boolean unified = signatureIndex < inputs.size() && inputs.get(signatureIndex).getUnifiedSighash();
@@ -292,7 +292,7 @@ public class TrezorDevice implements Closeable, ProtocolCallbacks {
                 transactionSignature = new TransactionSignature(ECDSASignature.decodeFromDER(signatureBytes),
                         unified ? SigHash.UNIFIED_ALL : SigHash.ALL);
             }
-            signatures.set(serialized.getSignatureIndex(), transactionSignature);
+            signatures.set(signatureIndex, transactionSignature);
         }
 
         return Utils.concat(serializedTx, serialized.getSerializedTx().toByteArray());
