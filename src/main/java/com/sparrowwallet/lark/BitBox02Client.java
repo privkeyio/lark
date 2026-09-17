@@ -44,7 +44,7 @@ public class BitBox02Client extends HardwareClient {
     private final ChildNumber PURPOSE_P2WPKH = ScriptType.P2WPKH.getDefaultDerivation().get(0);
     private final ChildNumber PURPOSE_P2WPKH_P2SH = ScriptType.P2SH_P2WPKH.getDefaultDerivation().get(0);
 
-    private final List<ScriptType> SUPPORTED_PUB_KEY_PATHS = List.of(ScriptType.P2SH_P2WPKH, ScriptType.P2WPKH, ScriptType.P2TR, ScriptType.P2SH_P2WSH, ScriptType.P2WSH);
+    private final List<ScriptType> SUPPORTED_SCRIPT_TYPES = List.of(ScriptType.P2SH_P2WPKH, ScriptType.P2WPKH, ScriptType.P2TR, ScriptType.P2SH_P2WSH, ScriptType.P2WSH);
 
     public BitBox02Client(HidDevice hidDevice) throws DeviceException {
         if(BITBOX02_ID.matches(hidDevice) && (hidDevice.getUsagePage() == 0xFFFF || hidDevice.getInterfaceNumber() == 0) &&
@@ -77,7 +77,7 @@ public class BitBox02Client extends HardwareClient {
      *
      * The BitBox02 has strict keypath validation.
      *
-     * The only accepted keypaths for xpubs are (as of firmware v9.4.0):
+     * The only accepted keypaths for xpubs are (as of firmware v9.19.0):
      *
      * - `m/49'/0'/<account'>` for `p2wpkh-p2sh` (segwit wrapped in P2SH)
      * - `m/84'/0'/<account'>` for `p2wpkh` (native segwit v0)
@@ -85,6 +85,7 @@ public class BitBox02Client extends HardwareClient {
      * - `m/48'/0'/<account'>/2'` for p2wsh multisig (native segwit v0 multisig).
      * - `m/48'/0'/<account'>/1'` for p2wsh-p2sh multisig (p2sh-wrapped segwit v0 multisig).
      * - `m/48'/0'/<account'>` for p2wsh and p2wsh-p2sh multisig.
+     * - `m/45'` and `m/45'/0'/<account'>` for non-standard derivation p2wsh and p2wsh-p2sh multisig (as of firmware v9.19.0).
      *
      * `account'` can be between `0'` and `99'`.
      *
@@ -93,7 +94,8 @@ public class BitBox02Client extends HardwareClient {
      *
      * In testnet mode, the second element must be `1'` (e.g. `m/49'/1'/...`).
      *
-     * Public keys for the Legacy address type (i.e. P2PKH and P2SH multisig) derivation path are unsupported.
+     * Public keys for the Legacy address type (i.e. P2PKH) derivation path are unsupported.
+     * Legacy P2SH multisig cannot be signed for, even though `m/45'` xpubs can be retrieved for segwit multisig.
      *
      * @param path the derivation path
      * @return the xpub at the derivation path
@@ -106,6 +108,11 @@ public class BitBox02Client extends HardwareClient {
         }
 
         try(BitBox02Device bitBox02Device = new BitBox02Device(hidDevice, new U2FHid(new HidPhysicalLayer(hidDevice)), noiseConfig)) {
+            //Firmware before 9.19.0 exports m/45' xpubs but cannot register or sign for a multisig account at that keypath
+            if(path.startsWith("m/45'")) {
+                bitBox02Device.requireAtLeastVersion(new Version("9.19.0"));
+            }
+
             Hww.Request.Builder request = Hww.Request.newBuilder();
             request.setBtcPub(Btc.BTCPubRequest.newBuilder().setCoin(getCoin()).addAllKeypath(KeyDerivation.parsePath(path).stream().map(ChildNumber::i).toList())
                     .setXpubType(Network.get() == Network.MAINNET ? Btc.BTCPubRequest.XPubType.XPUB : Btc.BTCPubRequest.XPubType.TPUB).setDisplay(false));
@@ -115,7 +122,7 @@ public class BitBox02Client extends HardwareClient {
     }
 
     private boolean isValidPath(String path) {
-        for(ScriptType scriptType : SUPPORTED_PUB_KEY_PATHS) {
+        for(ScriptType scriptType : SUPPORTED_SCRIPT_TYPES) {
             int account = scriptType.getAccount(path);
             if(account >= 0 && account < 100) {
                 return true;
@@ -126,7 +133,16 @@ public class BitBox02Client extends HardwareClient {
             return true;
         }
 
+        if(path.equals("m/45'") || path.matches("m/45'/[01]'/\\d{1,2}'")) {
+            return true;
+        }
+
         return false;
+    }
+
+    @Override
+    public boolean supportsScriptType(ScriptType scriptType) {
+        return SUPPORTED_SCRIPT_TYPES.contains(scriptType);
     }
 
     /**
@@ -801,6 +817,11 @@ public class BitBox02Client extends HardwareClient {
     }
 
     private void registerScriptConfig(BitBox02Device bitBox02Device, Btc.BTCScriptConfig btcScriptConfig, List<Integer> keypath, String name) throws DeviceException {
+        //Firmware before 9.19.0 only accepts multisig accounts at m/48' keypaths, and the xpub may have been imported without being fetched from this device
+        if(!keypath.isEmpty() && keypath.getFirst() == new ChildNumber(45, true).i()) {
+            bitBox02Device.requireAtLeastVersion(new Version("9.19.0"));
+        }
+
         boolean isRegistered = isScriptConfigRegistered(bitBox02Device, btcScriptConfig, keypath);
         if(!isRegistered) {
             if(name.isEmpty()) {
