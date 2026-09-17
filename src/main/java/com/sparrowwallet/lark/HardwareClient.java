@@ -32,6 +32,10 @@ public abstract class HardwareClient {
         throw new DeviceException("The " + getHardwareType().getDisplayName() + " does not support receiving silent payments");
     }
 
+    public boolean supportsScriptType(ScriptType scriptType) {
+        return true;
+    }
+
     public String getType() {
         return getHardwareType().getName();
     }

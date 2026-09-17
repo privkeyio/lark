@@ -553,7 +553,7 @@ class V2Protocol implements Protocol {
         byte[] trezorPubkeyFromResponse = credResponse.getTrezorStaticPublicKey().toByteArray();
 
         if(log.isDebugEnabled()) {
-            log.debug("Received credential ({} bytes): {}", credentialBlob.length, Utils.bytesToHex(credentialBlob));
+            log.debug("Received credential ({} bytes)", credentialBlob.length);
             log.debug("Trezor pubkey from response: {}", Utils.bytesToHex(trezorPubkeyFromResponse));
         }
 

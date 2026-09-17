@@ -288,7 +288,7 @@ class V1Protocol implements Protocol {
                     || readBytes[2] != (byte) '#') {
                 if(invalidChunksCounter++ > 5) {
                     if(log.isTraceEnabled()) {
-                        log.trace("< Header{}", Utils.bytesToHex(readBytes));
+                        log.trace("< Header{}", Utils.bytesToHex(Arrays.copyOf(readBytes, 9)));
                     }
                     throw new InvalidProtocolBufferException("Header invalid after multiple chunks");
                 }
@@ -298,7 +298,7 @@ class V1Protocol implements Protocol {
 
             // Must be OK to be here
             if(log.isTraceEnabled()) {
-                log.trace("< Header{}", Utils.bytesToHex(readBytes));
+                log.trace("< Header{}", Utils.bytesToHex(Arrays.copyOf(readBytes, 9)));
             }
 
             msgId = (((int) readBytes[3] & 0xFF) << 8) + ((int) readBytes[4] & 0xFF);
@@ -341,10 +341,6 @@ class V1Protocol implements Protocol {
         }
 
         byte[] msgData = Arrays.copyOfRange(messageBuffer.array(), 0, msgSize);
-
-        if(log.isTraceEnabled()) {
-            log.trace("< Message{}", Utils.bytesToHex(msgData));
-        }
 
         try {
             Method method = extractParserMethod(messageType);

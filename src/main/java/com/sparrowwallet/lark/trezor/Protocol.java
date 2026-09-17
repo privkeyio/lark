@@ -19,7 +19,7 @@ interface Protocol {
     /**
      * Message types whose serialized payload contains secret material, and must not be written to the log.
      */
-    Set<String> SECRET_MESSAGE_TYPES = Set.of("PassphraseAck", "PinMatrixAck", "ChangePin", "EntropyAck", "WordAck", "LoadDevice", "RecoveryDevice", "ThpCodeEntrySecret");
+    Set<String> SECRET_MESSAGE_TYPES = Set.of("PassphraseAck", "PinMatrixAck", "ChangePin", "EntropyAck", "WordAck", "LoadDevice", "RecoveryDevice", "ThpCodeEntrySecret", "ThpCredentialResponse");
 
     /**
      * Send a message and receive a response with automatic callback handling.
